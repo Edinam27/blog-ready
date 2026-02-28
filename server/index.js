@@ -374,16 +374,26 @@ app.get('/sitemap.xml', async (req, res) => {
   }
 });
 
+// Handle all other routes by serving the index.html file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
+});
+
 const port = process.env.API_PORT || 3001;
 
-migrate()
-  .then(() => {
-    console.log('Migration complete. Starting server...');
-    app.listen(port, () => {
-      console.log(`API server listening on http://localhost:${port}`);
+// Only listen if not running in Vercel (Vercel exports the app)
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  migrate()
+    .then(() => {
+      console.log('Migration complete. Starting server...');
+      app.listen(port, () => {
+        console.log(`API server listening on http://localhost:${port}`);
+      });
+    })
+    .catch((err) => {
+      console.error('Migration failed', err);
+      process.exit(1);
     });
-  })
-  .catch((err) => {
-    console.error('Migration failed', err);
-    process.exit(1);
-  });
+}
+
+export default app;
