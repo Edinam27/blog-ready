@@ -1,7 +1,7 @@
 
 import { PostCard } from "@/components/PostCard";
 import { useQuery } from "@tanstack/react-query";
-import { fetchPosts, fetchCategories, Category } from "@/lib/api";
+import { fetchPosts, fetchCategories, Category, Post } from "@/lib/api";
 import { Helmet } from "react-helmet-async";
 import { Navigate, useParams } from "react-router-dom";
 
@@ -13,7 +13,7 @@ export default function CategoryPage() {
   }
   
   const { data: categories = [] } = useQuery<Category[]>({ queryKey: ['categories'], queryFn: fetchCategories });
-  const { data: posts = [], isLoading } = useQuery({ queryKey: ['posts'], queryFn: fetchPosts });
+  const { data: posts = [], isLoading } = useQuery<Post[]>({ queryKey: ['posts'], queryFn: fetchPosts });
   const category = categories.find((cat) => cat.slug === slug);
   const filtered = posts.filter(p => p.category.slug === slug);
   

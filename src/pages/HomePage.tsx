@@ -2,11 +2,11 @@
 import { fetchCategories, Category } from "@/lib/api";
 import { PostCard } from "@/components/PostCard";
 import { useQuery } from "@tanstack/react-query";
-import { fetchPosts } from "@/lib/api";
+import { fetchPosts, Post } from "@/lib/api";
 import { Helmet } from "react-helmet-async";
 
 export default function HomePage() {
-  const { data: posts = [], isLoading } = useQuery({
+  const { data: posts = [], isLoading } = useQuery<Post[]>({
     queryKey: ['posts'],
     queryFn: fetchPosts,
   });
