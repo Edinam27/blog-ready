@@ -19,6 +19,7 @@ export interface Post {
   excerpt: string;
   content: string;
   coverImage: string;
+  images?: string[];
   date: string;
   author: Author;
   category: Category;
@@ -578,6 +579,81 @@ export const posts: Post[] = [
     isFeatured: false,
     readTime: 10,
     views: 1050
+  },
+  {
+    id: "7",
+    title: "Grammy Nominations 2026: Full Guide, Highlights & Key Changes",
+    slug: "grammy-nominations-2026",
+    excerpt: "A thorough look at the 2026 GRAMMY nominations: key dates, new categories, headline contenders, and what’s unique this year.",
+    content: `
+      # Grammy Nominations 2026
+
+      ![2026 GRAMMYs Hero](https://i8.amplience.net/i/naras/2026_grammys_68th_grammy_awards_Date-Hero-V3_1644x925)
+
+      The Recording Academy announced nominations for the 68th GRAMMY Awards (2026), with a stacked slate across pop, hip-hop, Latin, country, and alternative. This guide rounds up the essentials — dates, new categories, headline nominees, and how to watch — in one place.
+
+      ## Key Dates
+      - **Nominations announcement**: Nov 7, 2025
+      - **Awards ceremony**: Feb 1, 2026 — Crypto.com Arena, Los Angeles
+      - **Official site**: [GRAMMY.com](https://www.grammy.com/)
+
+      ## What’s New In 2026
+      The Recording Academy introduced changes that broaden recognition and keep pace with today’s music landscape. Highlights include:
+      - **Best Traditional Country Album** — celebrating classic, roots-informed country projects.
+      - **Best Album Cover** — spotlighting visual design and packaging as a creative discipline.
+      - Expanded opportunities and clearer guidelines across several categories.
+
+      Source: [GRAMMY.com update overview](https://grammy.com/news/2026-grammys-things-know-about-new-categories-changes)
+
+      ## Headline Contenders
+      This year’s predictions and early coverage point to a star-heavy lineup across the Big Four categories:
+
+      ![Kendrick Lamar, Lady Gaga, Bad Bunny](https://ca-times.brightspotcdn.com/dims4/default/450c3ed/2147483647/strip/true/crop/3000x1575+0+0/resize/1200x630!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F1d%2F6e%2F0b622d4d4233b81f4f31aaa98dab%2Fkendrick-lamar-lady-gaga-and-bad-bunny.jpg)
+
+      - **Album Of The Year**: Bad Bunny, Kendrick Lamar, Lady Gaga, Justin Bieber among expected leaders.
+      - **Record Of The Year**: Lady Gaga, Kendrick Lamar, Justin Bieber, Chappell Roan widely cited.
+      - **Song Of The Year**: Billie Eilish, Kendrick Lamar, Laufey, Justin Bieber, among others.
+      - **Best New Artist**: Olivia Dean, Ravyn Lenae, Alex Warren and more rising voices.
+
+      Sources: [Los Angeles Times predictions](https://www.latimes.com/entertainment-arts/music/story/2025-11-05/grammys-2026-nominations-predictions-kendrick-lady-gaga-bad-bunny), [The Independent coverage](https://www.the-independent.com/arts-entertainment/music/news/grammy-nominations-2026-announcement-b2860152.html)
+
+      ## Category Highlights
+      ### Pop & General Field
+      Expect fierce competition between global superstars and breakout acts. Pop singles dominate **Record Of The Year**, while intimate songwriting pushes into **Song Of The Year**.
+
+      ### Hip-Hop & R&B
+      Kendrick Lamar continues to be a benchmark for artistry and impact in hip-hop. R&B sees a mix of classic vocal performances and modern alt-R&B textures.
+
+      ### Latin
+      Bad Bunny leads a broad wave of Latin excellence spanning urbano, pop, and regional styles — another strong year for the genre’s global footprint.
+
+      ### Country
+      With **Best Traditional Country Album** added, heritage sounds and roots projects get a dedicated spotlight, alongside contemporary country categories.
+
+      ### Visual Design
+      The new **Best Album Cover** category brings designers and art directors into the spotlight — a win for the creative teams shaping music’s visual identity.
+
+      ## How To Watch
+      - **Date**: Feb 1, 2026
+      - **Where**: Crypto.com Arena, Los Angeles
+      - **Broadcast/Streaming**: Check your local listings and GRAMMY.com for official partners.
+
+      ## Final Take
+      The 2026 GRAMMYs sharpen focus on both musical craft and creative presentation. Whether you’re following the Big Four or exploring genre-specific categories, this year balances superstar competition with thoughtful recognition across the field.
+    `,
+    coverImage: "https://i8.amplience.net/i/naras/2026_grammys_68th_grammy_awards_Date-Hero-V3_1644x925",
+    date: "2025-11-07",
+    author: authors[1],
+    category: categories[2],
+    tags: ["Grammys", "Music", "Lifestyle", "Awards", "2026"],
+    isTrending: true,
+    isFeatured: true,
+    readTime: 9,
+    views: 0,
+    images: [
+      "https://i8.amplience.net/i/naras/2026_grammys_68th_grammy_awards_Date-Hero-V3_1644x925",
+      "https://ca-times.brightspotcdn.com/dims4/default/450c3ed/2147483647/strip/true/crop/3000x1575+0+0/resize/1200x630!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F1d%2F6e%2F0b622d4d4233b81f4f31aaa98dab%2Fkendrick-lamar-lady-gaga-and-bad-bunny.jpg"
+    ]
   }
 ];
 

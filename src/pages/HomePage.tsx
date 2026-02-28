@@ -1,13 +1,43 @@
 
-import { getFeaturedPosts, getTrendingPosts, posts, categories } from "@/data/blogData";
+import { fetchCategories, Category } from "@/lib/api";
 import { PostCard } from "@/components/PostCard";
+import { useQuery } from "@tanstack/react-query";
+import { fetchPosts } from "@/lib/api";
+import { Helmet } from "react-helmet-async";
 
 export default function HomePage() {
-  const trendingPosts = getTrendingPosts();
-  const featuredPosts = getFeaturedPosts();
+  const { data: posts = [], isLoading } = useQuery({
+    queryKey: ['posts'],
+    queryFn: fetchPosts,
+  });
+  const { data: categories = [] } = useQuery<Category[]>({ queryKey: ['categories'], queryFn: fetchCategories });
+  const trendingPosts = posts.filter((p) => p.isTrending).sort((a, b) => (b.views || 0) - (a.views || 0));
+  const featuredPosts = posts.filter((p) => p.isFeatured);
   
   return (
     <div className="container px-4 py-8 md:py-12">
+      <Helmet>
+        <title>Modern Blog Platform</title>
+        <meta name="description" content="Discover insights, trends, and stories across categories on our modern blog." />
+        <link rel="canonical" href={window.location.origin} />
+        <meta property="og:title" content="Modern Blog Platform" />
+        <meta property="og:description" content="Discover insights, trends, and stories across categories on our modern blog." />
+        <meta property="og:url" content={window.location.origin} />
+        <meta property="og:type" content="website" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Modern Blog",
+            "url": window.location.origin,
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": `${window.location.origin}/?q={search_term_string}`,
+              "query-input": "required name=search_term_string"
+            }
+          })}
+        </script>
+      </Helmet>
       {/* Hero section */}
       <section className="mb-12">
         <div className="mb-8 text-center">
@@ -27,11 +57,15 @@ export default function HomePage() {
             <span className="mr-2">🔥</span>Trending
           </h2>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {trendingPosts.slice(0, 3).map((post) => (
-            <PostCard key={post.id} post={post} variant="trending" />
-          ))}
-        </div>
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : (
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {trendingPosts.slice(0, 3).map((post) => (
+              <PostCard key={post.id} post={post} variant="trending" />
+            ))}
+          </div>
+        )}
       </section>
       
       {/* Featured posts section */}
@@ -41,11 +75,15 @@ export default function HomePage() {
             <span className="mr-2">🎯</span>Featured
           </h2>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {featuredPosts.slice(0, 3).map((post) => (
-            <PostCard key={post.id} post={post} variant="featured" />
-          ))}
-        </div>
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : (
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredPosts.slice(0, 3).map((post) => (
+              <PostCard key={post.id} post={post} variant="featured" />
+            ))}
+          </div>
+        )}
       </section>
       
       {/* Categories sections */}
@@ -62,14 +100,18 @@ export default function HomePage() {
               View all
             </a>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {posts
-              .filter((post) => post.category.id === category.id)
-              .slice(0, 3)
-              .map((post) => (
-                <PostCard key={post.id} post={post} />
-              ))}
-          </div>
+          {isLoading ? (
+            <div>Loading...</div>
+          ) : (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {posts
+                .filter((post) => post.category.slug === category.slug)
+                .slice(0, 3)
+                .map((post) => (
+                  <PostCard key={post.id} post={post} />
+                ))}
+            </div>
+          )}
         </section>
       ))}
     </div>

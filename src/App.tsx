@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Layout } from "@/components/Layout";
@@ -15,19 +16,23 @@ import { AdminLayout } from "@/components/admin/AdminLayout";
 import DashboardPage from "@/pages/admin/DashboardPage";
 import PostsPage from "@/pages/admin/PostsPage";
 import NewPostPage from "@/pages/admin/NewPostPage";
+import EditPostPage from "@/pages/admin/EditPostPage";
 import CategoriesPage from "@/pages/admin/CategoriesPage";
 import SettingsPage from "@/pages/admin/SettingsPage";
+import UsersPage from "@/pages/admin/UsersPage";
+import ProfilePage from "@/pages/admin/ProfilePage";
 
 // Create a client
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="light">
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
+    <HelmetProvider>
+      <ThemeProvider defaultTheme="light">
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
           <Routes>
             {/* Main website routes */}
             <Route path="/" element={<Layout />}>
@@ -40,9 +45,12 @@ const App = () => (
             <Route path="admin/login" element={<LoginPage />} />
             <Route path="admin" element={<AdminLayout />}>
               <Route index element={<DashboardPage />} />
+              <Route path="profile" element={<ProfilePage />} />
               <Route path="posts" element={<PostsPage />} />
               <Route path="posts/new" element={<NewPostPage />} />
+              <Route path="posts/edit/:slug" element={<EditPostPage />} />
               <Route path="categories" element={<CategoriesPage />} />
+              <Route path="users" element={<UsersPage />} />
               <Route path="settings" element={<SettingsPage />} />
             </Route>
             
@@ -50,8 +58,9 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
-      </TooltipProvider>
-    </ThemeProvider>
+        </TooltipProvider>
+      </ThemeProvider>
+    </HelmetProvider>
   </QueryClientProvider>
 );
 

@@ -1,29 +1,26 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { posts, categories, authors } from "@/data/blogData";
 import { AreaChart, BarChart } from "@/components/ui/chart-components";
+import { useQuery } from "@tanstack/react-query";
+import { fetchPosts } from "@/lib/api";
 
 export default function DashboardPage() {
+  const { data: posts = [], isLoading } = useQuery({ queryKey: ['posts'], queryFn: fetchPosts });
   const totalPosts = posts.length;
-  const totalCategories = categories.length;
-  const totalAuthors = authors.length;
+  const totalCategories = Array.from(new Set(posts.map((p) => p.category.slug))).length;
+  const totalAuthors = Array.from(new Set(posts.map((p) => p.author.name))).length;
   const trendingPosts = posts.filter((post) => post.isTrending).length;
-  
-  // Sample view data for charts
-  const viewsData = [
-    { name: "Jan", views: 320 },
-    { name: "Feb", views: 450 },
-    { name: "Mar", views: 380 },
-    { name: "Apr", views: 520 },
-    { name: "May", views: 780 },
-    { name: "Jun", views: 950 },
-    { name: "Jul", views: 1100 },
-  ];
-  
-  const categoryData = categories.map((category) => {
-    const count = posts.filter((post) => post.category.id === category.id).length;
-    return { name: category.name, count };
-  });
+
+  // Real views data: views per post
+  const viewsData = posts.map((p) => ({ name: p.title, views: p.views || 0 }));
+
+  // Posts per category from real data
+  const categoryCountMap: Record<string, number> = posts.reduce((acc, p) => {
+    const slug = p.category.slug;
+    acc[slug] = (acc[slug] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+  const categoryData = Object.entries(categoryCountMap).map(([slug, count]) => ({ name: slug, count }));
   
   return (
     <div className="space-y-8">
@@ -42,7 +39,7 @@ export default function DashboardPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{totalPosts}</div>
+            <div className="text-2xl font-bold">{isLoading ? '—' : totalPosts}</div>
           </CardContent>
         </Card>
         
@@ -53,7 +50,7 @@ export default function DashboardPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{totalCategories}</div>
+            <div className="text-2xl font-bold">{isLoading ? '—' : totalCategories}</div>
           </CardContent>
         </Card>
         
@@ -64,7 +61,7 @@ export default function DashboardPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{totalAuthors}</div>
+            <div className="text-2xl font-bold">{isLoading ? '—' : totalAuthors}</div>
           </CardContent>
         </Card>
         
@@ -75,7 +72,7 @@ export default function DashboardPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{trendingPosts}</div>
+            <div className="text-2xl font-bold">{isLoading ? '—' : trendingPosts}</div>
           </CardContent>
         </Card>
       </div>
@@ -83,9 +80,9 @@ export default function DashboardPage() {
       <div className="grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>Views Over Time</CardTitle>
+            <CardTitle>Views by Post</CardTitle>
             <CardDescription>
-              Monthly view count for all blog posts
+              Total views per post from the database
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -129,7 +126,9 @@ export default function DashboardPage() {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {posts.slice(0, 5).map((post) => (
+            {isLoading ? (
+              <div>Loading...</div>
+            ) : posts.slice(0, 5).map((post) => (
               <div key={post.id} className="flex items-start gap-4">
                 <div className="rounded-md bg-primary/10 p-2">
                   <svg
@@ -151,8 +150,7 @@ export default function DashboardPage() {
                 <div className="space-y-1">
                   <p className="text-sm font-medium leading-none">{post.title}</p>
                   <p className="text-sm text-muted-foreground">
-                    Published by {post.author.name} on{" "}
-                    {new Date(post.date).toLocaleDateString()}
+                    Published by {post.author.name} on {new Date(post.date).toLocaleDateString()}
                   </p>
                 </div>
               </div>

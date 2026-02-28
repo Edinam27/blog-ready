@@ -32,7 +32,7 @@ export const useAuthStore = create<AuthState>()(
         await new Promise(resolve => setTimeout(resolve, 1000));
         
         // Simple admin auth (in production use a proper auth system)
-        if (email === 'admin@example.com' && password === 'admin123') {
+        if (email === 'admin@example.com' && password === 'ekajiEKAJI1$') {
           const user = {
             id: '1',
             name: 'Admin User',

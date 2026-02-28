@@ -2,7 +2,7 @@
 import { Link, Navigate, Outlet, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { useAuthStore } from "@/lib/auth";
-import { FileText, Home, LogOut, Plus, Settings, Tags } from "lucide-react";
+import { FileText, Home, LogOut, Plus, Settings, Tags, Users, User } from "lucide-react";
 import { ThemeToggle } from "../ThemeToggle";
 import { useCallback } from "react";
 
@@ -35,6 +35,12 @@ export function AdminLayout() {
             </Link>
           </Button>
           <Button asChild variant="ghost" className="w-full justify-start">
+            <Link to="/admin/profile">
+              <User className="mr-2 h-4 w-4" />
+              Profile
+            </Link>
+          </Button>
+          <Button asChild variant="ghost" className="w-full justify-start">
             <Link to="/admin/posts">
               <FileText className="mr-2 h-4 w-4" />
               Posts
@@ -44,6 +50,12 @@ export function AdminLayout() {
             <Link to="/admin/categories">
               <Tags className="mr-2 h-4 w-4" />
               Categories
+            </Link>
+          </Button>
+          <Button asChild variant="ghost" className="w-full justify-start">
+            <Link to="/admin/users">
+              <Users className="mr-2 h-4 w-4" />
+              Users
             </Link>
           </Button>
           <Button asChild variant="ghost" className="w-full justify-start">

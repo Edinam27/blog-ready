@@ -34,7 +34,7 @@ export function Header() {
           </nav>
         </div>
         
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 sm:gap-3">
           <SearchBar />
           <ThemeToggle />
           
@@ -50,8 +50,8 @@ export function Header() {
           
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon">
-                <Menu className="h-5 w-5" />
+              <Button variant="ghost" size="icon" className="h-10 w-10">
+                <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
@@ -59,13 +59,13 @@ export function Header() {
               <Link to="/" className="flex items-center" onClick={() => setIsOpen(false)}>
                 <span className="font-bold text-xl">ModernBlog</span>
               </Link>
-              <nav className="mt-8 flex flex-col gap-4">
+              <nav className="mt-8 flex flex-col gap-5">
                 {categories.map((category) => (
                   <Link
                     key={category.id}
                     to={`/category/${category.slug}`}
                     onClick={() => setIsOpen(false)}
-                    className="text-foreground/80 transition-colors hover:text-foreground"
+                    className="text-lg text-foreground/80 transition-colors hover:text-foreground"
                   >
                     {category.name}
                   </Link>
@@ -74,7 +74,7 @@ export function Header() {
                   <Link
                     to="/admin"
                     onClick={() => setIsOpen(false)}
-                    className="text-foreground/80 transition-colors hover:text-foreground"
+                    className="text-lg text-foreground/80 transition-colors hover:text-foreground"
                   >
                     Dashboard
                   </Link>

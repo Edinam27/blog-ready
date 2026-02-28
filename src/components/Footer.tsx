@@ -1,8 +1,10 @@
 
 import { Link } from "react-router-dom";
-import { categories } from "@/data/blogData";
+import { useQuery } from "@tanstack/react-query";
+import { fetchCategories, Category } from "@/lib/api";
 
 export function Footer() {
+  const { data: categories = [] } = useQuery<Category[]>({ queryKey: ['categories'], queryFn: fetchCategories });
   return (
     <footer className="border-t bg-background">
       <div className="container px-4 py-12 md:py-16">

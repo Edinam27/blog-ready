@@ -1,7 +1,8 @@
 
 import { useState } from "react";
 import { Input } from "./ui/input";
-import { posts } from "@/data/blogData";
+import { useQuery } from "@tanstack/react-query";
+import { fetchPosts } from "@/lib/api";
 import { useNavigate } from "react-router-dom";
 import { Search, X } from "lucide-react";
 import { Button } from "./ui/button";
@@ -10,6 +11,7 @@ import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, C
 export function SearchBar() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const { data: posts = [] } = useQuery({ queryKey: ['posts'], queryFn: fetchPosts });
   
   const handleSelect = (slug: string) => {
     setOpen(false);
