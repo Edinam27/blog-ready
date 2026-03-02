@@ -336,7 +336,8 @@ app.patch('/api/users/:id', async (req, res) => {
 
 app.get('/sitemap.xml', async (req, res) => {
   try {
-    const baseUrl = process.env.BASE_URL || 'http://localhost:8080';
+    // Vercel automatically sets VERCEL_URL, but it doesn't include the protocol
+    const baseUrl = process.env.BASE_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:8080');
     
     // Fetch posts
     const postRows = await sql`SELECT slug, date FROM posts ORDER BY date DESC`;
