@@ -5,8 +5,16 @@ export interface User {
   name: string;
   email: string;
   role: 'admin' | 'editor' | 'author';
-  photoUrl?: string | null;
-  bio?: string | null;
+  photoUrl?: string;
+  bio?: string;
+  socialLinks?: {
+    twitter?: string;
+    linkedin?: string;
+    github?: string;
+  };
+  location?: string;
+  website?: string;
+  createdAt: string;
 }
 
 export interface Category {
@@ -114,23 +122,34 @@ export async function deletePost(slug: string): Promise<void> {
 }
 
 export async function fetchUsers(): Promise<User[]> {
-  try {
-    const res = await fetch(`${BASE}/users`);
-    if (!res.ok) throw new Error('Failed to fetch users');
-    return await res.json();
-  } catch (e) {
-    // Fallback to empty list when backend is unavailable in development
-    return [];
-  }
+  const res = await fetch(`${BASE}/users`);
+  if (!res.ok) throw new Error('Failed to fetch users');
+  return res.json();
 }
 
-export async function createUser(payload: { name: string; email: string; role: User['role']; }): Promise<User> {
+export async function fetchUser(id: string): Promise<User> {
+  const res = await fetch(`${BASE}/users/${id}`);
+  if (!res.ok) throw new Error('Failed to fetch user');
+  return res.json();
+}
+
+export async function createUser(user: Omit<User, 'id' | 'createdAt'>): Promise<User> {
   const res = await fetch(`${BASE}/users`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(user),
   });
   if (!res.ok) throw new Error('Failed to create user');
+  return res.json();
+}
+
+export async function updateUser(id: string, updates: Partial<User>): Promise<User> {
+  const res = await fetch(`${BASE}/users/${id}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(updates),
+  });
+  if (!res.ok) throw new Error('Failed to update user');
   return res.json();
 }
 
@@ -165,18 +184,3 @@ export async function updateCategory(id: string, payload: Partial<{ name: string
   return res.json();
 }
 
-export async function updateUser(id: string, payload: Partial<{
-  name: string;
-  email: string;
-  role: User['role'];
-  photoUrl: string | null;
-  bio: string | null;
-}>): Promise<User> {
-  const res = await fetch(`${BASE}/users/${id}`, {
-    method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-  });
-  if (!res.ok) throw new Error('Failed to update user');
-  return res.json();
-}

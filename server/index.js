@@ -52,9 +52,22 @@ async function migrate() {
       role TEXT NOT NULL CHECK (role IN ('admin','editor','author')),
       photo_url TEXT,
       bio TEXT,
+      social_links JSONB DEFAULT '{}'::jsonb,
+      location TEXT,
+      website TEXT,
       created_at TIMESTAMP WITH TIME ZONE DEFAULT now()
     );
   `;
+  
+  // Add columns if they don't exist (for existing tables)
+  try {
+    await sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS social_links JSONB DEFAULT '{}'::jsonb`;
+    await sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS location TEXT`;
+    await sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS website TEXT`;
+  } catch (e) {
+    console.warn('Migration warning: could not alter users table', e);
+  }
+
   await sql`
     CREATE TABLE IF NOT EXISTS categories (
       id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
@@ -285,6 +298,30 @@ app.get('/api/users', async (req, res) => {
   }
 });
 
+app.get('/api/users/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const rows = await sql`SELECT * FROM users WHERE id = ${id}`;
+    if (rows.length === 0) return res.status(404).json({ error: 'User not found' });
+    const u = rows[0];
+    res.json({
+      id: u.id,
+      name: u.name,
+      email: u.email,
+      role: u.role,
+      photoUrl: u.photo_url || null,
+      bio: u.bio || null,
+      socialLinks: u.social_links || {},
+      location: u.location || null,
+      website: u.website || null,
+      createdAt: u.created_at
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch user' });
+  }
+});
+
 app.post('/api/users', async (req, res) => {
   try {
     const { name, email, role } = req.body;
@@ -306,7 +343,7 @@ app.post('/api/users', async (req, res) => {
 app.patch('/api/users/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, email, role, photoUrl, bio } = req.body;
+    const { name, email, role, photoUrl, bio, socialLinks, location, website } = req.body;
 
     // Build dynamic update set
     const fields = [];
@@ -316,6 +353,9 @@ app.patch('/api/users/:id', async (req, res) => {
     if (role !== undefined) { fields.push('role'); values.push(role); }
     if (photoUrl !== undefined) { fields.push('photo_url'); values.push(photoUrl); }
     if (bio !== undefined) { fields.push('bio'); values.push(bio); }
+    if (socialLinks !== undefined) { fields.push('social_links'); values.push(socialLinks); }
+    if (location !== undefined) { fields.push('location'); values.push(location); }
+    if (website !== undefined) { fields.push('website'); values.push(website); }
 
     if (fields.length === 0) {
       return res.status(400).json({ error: 'No fields to update' });
@@ -327,7 +367,18 @@ app.patch('/api/users/:id', async (req, res) => {
     const rows = await sql(query, ...values, id);
     if (rows.length === 0) return res.status(404).json({ error: 'User not found' });
     const u = rows[0];
-    res.json({ id: u.id, name: u.name, email: u.email, role: u.role, photoUrl: u.photo_url || null, bio: u.bio || null, createdAt: u.created_at });
+    res.json({
+      id: u.id,
+      name: u.name,
+      email: u.email,
+      role: u.role,
+      photoUrl: u.photo_url || null,
+      bio: u.bio || null,
+      socialLinks: u.social_links || {},
+      location: u.location || null,
+      website: u.website || null,
+      createdAt: u.created_at
+    });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to update user' });
@@ -336,8 +387,8 @@ app.patch('/api/users/:id', async (req, res) => {
 
 app.get('/sitemap.xml', async (req, res) => {
   try {
-    // Use the production URL as default, or override with BASE_URL env var
-    const baseUrl = process.env.BASE_URL || 'https://blog-ready.vercel.app';
+    // Force the production URL for sitemap generation
+    const baseUrl = 'https://blog-ready.vercel.app';
     
     // Fetch posts
     const postRows = await sql`SELECT slug, date FROM posts ORDER BY date DESC`;
