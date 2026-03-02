@@ -336,8 +336,8 @@ app.patch('/api/users/:id', async (req, res) => {
 
 app.get('/sitemap.xml', async (req, res) => {
   try {
-    // Vercel automatically sets VERCEL_URL, but it doesn't include the protocol
-    const baseUrl = process.env.BASE_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:8080');
+    // Use the production URL as default, or override with BASE_URL env var
+    const baseUrl = process.env.BASE_URL || 'https://blog-ready.vercel.app';
     
     // Fetch posts
     const postRows = await sql`SELECT slug, date FROM posts ORDER BY date DESC`;
