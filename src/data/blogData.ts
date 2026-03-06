@@ -71,6 +71,11 @@ export const categories: Category[] = [
     id: "4",
     name: "Education",
     slug: "education"
+  },
+  {
+    id: "5",
+    name: "News",
+    slug: "news"
   }
 ];
 
@@ -173,7 +178,7 @@ export const posts: Post[] = [
     coverImage: "https://images.unsplash.com/photo-1543167123-0852026219c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=2700&q=80",
     date: "2026-03-06",
     author: authors[2],
-    category: categories[0],
+    category: categories[4],
     tags: ["Ghana", "Independence Day", "Economy", "Technology", "5G"],
     isTrending: true,
     isFeatured: true,
@@ -213,7 +218,7 @@ export const posts: Post[] = [
     coverImage: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-1.2.1&auto=format&fit=crop&w=2700&q=80",
     date: "2026-03-06",
     author: authors[0],
-    category: categories[0],
+    category: categories[4],
     tags: ["Global News", "AI", "Middle East", "Conflict", "Technology"],
     isTrending: true,
     isFeatured: true,
