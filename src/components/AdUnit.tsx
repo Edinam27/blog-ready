@@ -15,7 +15,7 @@ export function AdUnit({ slot = "1234567890", format = "rectangle", className = 
         <span className="mt-2 text-xs">Slot: {slot}</span>
         <span className="text-xs">Format: {format}</span>
         {/* Placeholder for actual ad script */}
-        {/* <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossOrigin="anonymous"></script> */}
+        {/* <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4395759670494077" crossOrigin="anonymous"></script> */}
       </div>
     </Card>
   );
