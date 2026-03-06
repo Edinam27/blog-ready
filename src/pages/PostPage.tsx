@@ -124,26 +124,26 @@ export default function PostPage() {
         </div>
 
         <div className="grid gap-10 lg:grid-cols-[1fr_300px]">
-          <div className="space-y-10">
-            <div className="relative aspect-video overflow-hidden rounded-xl border bg-muted">
+          <div className="space-y-10 min-w-0">
+            <div className="relative overflow-hidden rounded-xl border bg-muted">
               <img
                 src={post.coverImage}
                 alt={post.title}
-                className="object-cover w-full h-full"
+                className="w-full h-auto object-cover max-h-[600px]"
               />
             </div>
 
             <AffiliateDisclosure />
             <AdUnit slotId="top-content-ad" className="my-8" />
 
-            <div className="prose prose-lg dark:prose-invert max-w-none">
+            <div className="prose prose-lg dark:prose-invert max-w-none break-words">
               <ReactMarkdown 
                 remarkPlugins={[remarkGfm]} 
                 rehypePlugins={[rehypeRaw, [rehypeSanitize, defaultSchema]]}
                 components={{
                   // eslint-disable-next-line @typescript-eslint/no-unused-vars
                   img: ({node, ...props}) => (
-                    <img {...props} className="rounded-lg border shadow-sm my-8" alt={props.alt || ''} />
+                    <img {...props} className="rounded-lg border shadow-sm my-8 w-full h-auto" alt={props.alt || ''} />
                   ),
                   // eslint-disable-next-line @typescript-eslint/no-unused-vars
                   a: ({node, ...props}) => (
