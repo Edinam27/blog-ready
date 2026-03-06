@@ -17,6 +17,24 @@ import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import { AdUnit } from "@/components/AdUnit";
 import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
 
+// Helper function to strip indentation from template literals
+const stripIndentation = (str: string) => {
+  if (!str) return '';
+  // Find the first line with non-whitespace characters to determine base indentation
+  const lines = str.split('\n');
+  const firstContentLine = lines.find(line => line.trim().length > 0);
+  
+  if (!firstContentLine) return str;
+  
+  const indentation = firstContentLine.match(/^\s*/)?.[0] || '';
+  
+  if (!indentation) return str;
+  
+  // Create a regex to match the indentation at the start of each line
+  const regex = new RegExp(`^${indentation}`, 'gm');
+  return str.replace(regex, '');
+};
+
 export default function PostPage() {
   const { slug } = useParams();
   
@@ -151,7 +169,7 @@ export default function PostPage() {
                   )
                 }}
               >
-                {post.content}
+                {stripIndentation(post.content)}
               </ReactMarkdown>
             </div>
 
