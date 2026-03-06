@@ -11,6 +11,7 @@ import NotFound from "@/pages/NotFound";
 import HomePage from "@/pages/HomePage";
 import CategoryPage from "@/pages/CategoryPage";
 import PostPage from "@/pages/PostPage";
+import ResourcesPage from "@/pages/ResourcesPage";
 import LoginPage from "@/pages/admin/LoginPage";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import DashboardPage from "@/pages/admin/DashboardPage";
@@ -39,6 +40,7 @@ const App = () => (
               <Route index element={<HomePage />} />
               <Route path="category/:slug" element={<CategoryPage />} />
               <Route path="blog/:slug" element={<PostPage />} />
+              <Route path="resources" element={<ResourcesPage />} />
             </Route>
             
             {/* Admin routes */}

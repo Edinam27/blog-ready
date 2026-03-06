@@ -76,6 +76,151 @@ export const categories: Category[] = [
 
 export const posts: Post[] = [
   {
+    id: "new-3",
+    title: "The Ultimate Guide to Building a Productivity Tech Stack in 2026",
+    slug: "ultimate-guide-productivity-tech-stack-2026",
+    excerpt: "Discover the essential tools and strategies to optimize your workflow and boost productivity in the digital age.",
+    content: `
+      # The Ultimate Guide to Building a Productivity Tech Stack in 2026
+
+      In the fast-paced digital world of 2026, having the right set of tools is crucial for maintaining efficiency and staying ahead of the curve. Whether you're a freelancer, a remote worker, or leading a team, building a robust productivity tech stack can transform the way you work.
+
+      ## What is a Productivity Tech Stack?
+
+      A productivity tech stack is a collection of software and applications that work together to streamline your workflow, enhance communication, and automate repetitive tasks. The goal is to create a seamless ecosystem where information flows freely and distractions are minimized.
+
+      ## 1. Project Management: The Central Hub
+
+      Your project management tool is the backbone of your productivity system. In 2026, tools like **Notion** and **ClickUp** have evolved into all-in-one workspaces.
+
+      - **Notion**: Perfect for those who love customization. It combines notes, databases, and wikis into a single platform.
+      - **ClickUp**: Ideal for teams needing robust task management, time tracking, and goal setting features.
+
+      ## 2. Communication: Staying Connected
+
+      Effective communication is key, especially for distributed teams.
+
+      - **Slack**: Remains the industry standard for real-time messaging, with enhanced AI features for summarizing threads.
+      - **Microsoft Teams**: A powerhouse for organizations deeply integrated into the Microsoft ecosystem.
+
+      ## 3. Time Management and Focus
+
+      Understanding how you spend your time is the first step to improving it.
+
+      - **Toggl Track**: Simple yet powerful time tracking to identify productivity leaks.
+      - **Forest**: Gamifies your focus sessions, helping you stay off your phone and plant real trees.
+
+      ## 4. Knowledge Management: Building a Second Brain
+
+      Don't rely on your memory alone. Tools for "Personal Knowledge Management" (PKM) are essential.
+
+      - **Obsidian**: A local-first markdown note-taking app that links your thoughts together.
+      - **Roam Research**: Great for networked thought and bi-directional linking.
+
+      ## 5. Automation: Working Smarter
+
+      Connect your apps and automate mundane tasks to save hours every week.
+
+      - **Zapier**: The glue that connects thousands of web apps.
+      - **Make (formerly Integromat)**: Offers more complex visual workflows for advanced automation users.
+
+      ## Conclusion
+
+      Building the ultimate productivity tech stack is a personal journey. Start by identifying your specific needs and pain points. Experiment with different tools, but remember: the best tool is the one you actually use.
+
+      By curating a stack that works for you, you can reclaim your time, reduce stress, and achieve your goals with greater ease in 2026.
+    `,
+    coverImage: "/images/modern-productivity.png",
+    date: "2026-03-06",
+    author: authors[0],
+    category: categories[0],
+    tags: ["Productivity", "Tech Stack", "Remote Work", "Efficiency"],
+    isTrending: true,
+    isFeatured: true,
+    readTime: 7,
+    views: 850
+  },
+  {
+    id: "new-1",
+    title: "Ghana Marks 69th Independence Day: Digital Future and Economic Resilience",
+    slug: "ghana-69th-independence-day-digital-future",
+    excerpt: "As Ghana celebrates its 69th Independence Day, the nation highlights its digital transformation, inflation drop, and future economic resilience.",
+    content: `
+      # Ghana Marks 69th Independence Day: Digital Future and Economic Resilience
+
+      Today, Ghana celebrates its 69th Independence Day with a renewed focus on national values, accountability, and digital transformation. In a timeline marked by resilience, the nation is observing this significant milestone under the theme of "Harnessing Digital Opportunities for National Development."
+
+      ## A Call for Values and Accountability
+
+      President Mahama, addressing the nation at the independence parade, emphasized that Ghana's "reset" must begin with a return to core values and strict accountability. He described corruption as a "cancer" that undermines development and called for a united front to combat it. The President's speech resonated with many, as he highlighted that wealth acquired through dubious means is a curse to the nation.
+
+      ## Economic Milestones: Inflation Drops
+
+      On the economic front, there is cause for cautious optimism. Reports indicate that Ghana has recorded its 14th straight drop in inflation, signaling a stabilizing economy. This positive trend is a relief to citizens and businesses alike, offering a glimmer of hope for a more robust economic future.
+
+      ## Digital Transformation: 5G and Beyond
+
+      A major highlight of the celebrations is the focus on technology. The National Communications Authority (NCA) has moved to scrap the exclusivity of the Next Gen Infraco (NGIC) 5G license. This policy shift is expected to open up the market, fostering competition and accelerating the deployment of high-speed internet across the country.
+
+      "Harnessing digital opportunities is not just a choice but a necessity for our future," the President noted. With new agreements signed under the Accra Reset initiative, Ghana is positioning itself as a digital hub in West Africa.
+
+      ## Infrastructure and Social Developments
+
+      In other news, the Electricity Company of Ghana (ECG) has embarked on a major transformer upgrade to stabilize power in key areas like Adenta. Meanwhile, on the sports front, the Confederation of African Football (CAF) has pushed the 2026 Women's Africa Cup of Nations (WAFCON) to July, giving Ghana more time to prepare for the continental showpiece.
+
+      As the flags wave and the anthem plays today, the mood is one of reflection and determination. Ghana at 69 is a nation aware of its challenges but boldly stepping into a digital and economically resilient future.
+    `,
+    coverImage: "https://images.unsplash.com/photo-1543167123-0852026219c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=2700&q=80",
+    date: "2026-03-06",
+    author: authors[2],
+    category: categories[0],
+    tags: ["Ghana", "Independence Day", "Economy", "Technology", "5G"],
+    isTrending: true,
+    isFeatured: true,
+    readTime: 5,
+    views: 1500
+  },
+  {
+    id: "new-2",
+    title: "Global Tensions Escalate: Middle East Crisis and AI Warfare Concerns",
+    slug: "global-tensions-middle-east-ai-warfare",
+    excerpt: "World leaders express concern over the escalating conflict in the Middle East and the growing role of AI in military decision-making.",
+    content: `
+      # Global Tensions Escalate: Middle East Crisis and AI Warfare Concerns
+
+      The world wakes up to a volatile geopolitical landscape today, March 6, 2026. Escalating conflicts in the Middle East and the rising influence of Artificial Intelligence (AI) in warfare are dominating global headlines.
+
+      ## Middle East Conflict Intensifies
+
+      Reports confirm intensified military actions in the Middle East, with "Operation Epic Fury" involving significant airstrikes. The situation remains fluid, with global powers urging restraint. The conflict has already had ripple effects on global logistics, with major shipping giant Maersk suspending services to the region due to safety concerns.
+
+      The humanitarian impact is also severe, with the UN warning of worsening conditions in conflict zones. The international community is scrambling for diplomatic solutions, but the path to peace remains uncertain.
+
+      ## The AI Arms Race and Nuclear Decision Making
+
+      In a chilling development, a new UN report highlights the "Impact of Artificial Intelligence in Nuclear Decision-Making." As AI systems become more integrated into military command and control structures, experts are raising alarms about the risks of algorithmic errors leading to unintended escalation.
+
+      "The potential militarization of AI threatens to dominate every aspect of our lives," warns the report. The debate over autonomous weapons systems is no longer theoretical; it is a pressing reality that demands immediate global regulation.
+
+      ## Tech Policy Shifts: Social Media Bans
+
+      On a different tech front, the Indian state of Karnataka has taken a bold step by banning social media for anyone under the age of 16. This move joins a growing global trend of restricting minor's access to digital platforms, sparking a worldwide debate on digital rights, mental health, and parental control.
+
+      ## Conclusion
+
+      From the battlefields of the Middle East to the digital frontiers of AI and social media regulation, March 6, 2026, marks a pivotal moment in history. As technology and conflict intersect in unprecedented ways, the need for wise leadership and ethical frameworks has never been more critical.
+    `,
+    coverImage: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-1.2.1&auto=format&fit=crop&w=2700&q=80",
+    date: "2026-03-06",
+    author: authors[0],
+    category: categories[0],
+    tags: ["Global News", "AI", "Middle East", "Conflict", "Technology"],
+    isTrending: true,
+    isFeatured: true,
+    readTime: 6,
+    views: 2300
+  },
+  {
     id: "1",
     title: "The Future of Artificial Intelligence",
     slug: "future-of-artificial-intelligence",

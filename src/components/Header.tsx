@@ -37,6 +37,12 @@ export function Header() {
                 {category.name}
               </Link>
             ))}
+            <Link
+              to="/resources"
+              className="text-foreground/60 transition-colors hover:text-foreground font-medium"
+            >
+              Resources
+            </Link>
           </nav>
         </div>
         
@@ -76,6 +82,13 @@ export function Header() {
                     {category.name}
                   </Link>
                 ))}
+                <Link
+                  to="/resources"
+                  onClick={() => setIsOpen(false)}
+                  className="text-lg text-foreground/80 transition-colors hover:text-foreground font-medium"
+                >
+                  Resources
+                </Link>
                 {isLoggedIn && (
                   <Link
                     to="/admin"
