@@ -114,11 +114,12 @@ function mapRow(row) {
 
 // Routes
 app.get('/api/health', (req, res) => {
-  res.json({ ok: true });
+  res.json({ ok: true, database: !!sql });
 });
 
 app.get('/api/posts', async (req, res) => {
   try {
+    if (!sql) throw new Error('No database connection');
     const rows = await sql`
       SELECT p.*, c.id as category_id, c.name as category_name, c.slug as category_slug
       FROM posts p
@@ -134,6 +135,7 @@ app.get('/api/posts', async (req, res) => {
 
 app.get('/api/posts/:slug', async (req, res) => {
   try {
+    if (!sql) throw new Error('No database connection');
     const { slug } = req.params;
     const rows = await sql`
       SELECT p.*, c.id as category_id, c.name as category_name, c.slug as category_slug
@@ -152,6 +154,7 @@ app.get('/api/posts/:slug', async (req, res) => {
 
 app.post('/api/posts', async (req, res) => {
   try {
+    if (!sql) throw new Error('No database connection');
     const {
       title,
       slug,
@@ -185,6 +188,7 @@ app.post('/api/posts', async (req, res) => {
 // Update post by slug
 app.patch('/api/posts/:slug', async (req, res) => {
   try {
+    if (!sql) throw new Error('No database connection');
     const { slug } = req.params;
 
     // Normalize incoming fields; use null for unchanged values so COALESCE preserves existing data
@@ -227,6 +231,7 @@ app.patch('/api/posts/:slug', async (req, res) => {
 
 app.delete('/api/posts/:slug', async (req, res) => {
   try {
+    if (!sql) throw new Error('No database connection');
     const { slug } = req.params;
     const rows = await sql`
       DELETE FROM posts
@@ -244,6 +249,7 @@ app.delete('/api/posts/:slug', async (req, res) => {
 // Categories routes
 app.get('/api/categories', async (req, res) => {
   try {
+    if (!sql) throw new Error('No database connection');
     const rows = await sql`SELECT * FROM categories ORDER BY name ASC`;
     res.json(rows.map(c => ({ id: c.id, name: c.name, slug: c.slug })));
   } catch (err) {
@@ -254,6 +260,7 @@ app.get('/api/categories', async (req, res) => {
 
 app.post('/api/categories', async (req, res) => {
   try {
+    if (!sql) throw new Error('No database connection');
     const { name, slug } = req.body;
     if (!name || !slug) return res.status(400).json({ error: 'name and slug are required' });
     const inserted = await sql`INSERT INTO categories (name, slug) VALUES (${name}, ${slug}) RETURNING *`;
@@ -270,6 +277,7 @@ app.post('/api/categories', async (req, res) => {
 
 app.patch('/api/categories/:id', async (req, res) => {
   try {
+    if (!sql) throw new Error('No database connection');
     const { id } = req.params;
     const { name, slug } = req.body;
     const fields = [];
@@ -292,6 +300,7 @@ app.patch('/api/categories/:id', async (req, res) => {
 // Users routes
 app.get('/api/users', async (req, res) => {
   try {
+    if (!sql) throw new Error('No database connection');
     const rows = await sql`SELECT * FROM users ORDER BY created_at DESC`;
     res.json(rows.map(u => ({
       id: u.id,
@@ -310,6 +319,7 @@ app.get('/api/users', async (req, res) => {
 
 app.get('/api/users/:id', async (req, res) => {
   try {
+    if (!sql) throw new Error('No database connection');
     const { id } = req.params;
     const rows = await sql`SELECT * FROM users WHERE id = ${id}`;
     if (rows.length === 0) return res.status(404).json({ error: 'User not found' });
@@ -334,6 +344,7 @@ app.get('/api/users/:id', async (req, res) => {
 
 app.post('/api/users', async (req, res) => {
   try {
+    if (!sql) throw new Error('No database connection');
     const { name, email, role } = req.body;
     if (!name || !email || !role) {
       return res.status(400).json({ error: 'name, email, and role are required' });
@@ -352,6 +363,7 @@ app.post('/api/users', async (req, res) => {
 // Update user profile
 app.patch('/api/users/:id', async (req, res) => {
   try {
+    if (!sql) throw new Error('No database connection');
     const { id } = req.params;
     const { name, email, role, photoUrl, bio, socialLinks, location, website } = req.body;
 
@@ -414,9 +426,13 @@ app.get('/sitemap.xml', async (req, res) => {
     <priority>${route.priority}</priority>
   </url>`).join('');
     
-    // Fetch posts
-    const postRows = await sql`SELECT slug, date FROM posts ORDER BY date DESC`;
-    const postUrls = postRows.map(r => `
+    let postUrls = '';
+    let categoryUrls = '';
+
+    if (sql) {
+      // Fetch posts
+      const postRows = await sql`SELECT slug, date FROM posts ORDER BY date DESC`;
+      postUrls = postRows.map(r => `
   <url>
     <loc>${baseUrl}/blog/${r.slug}</loc>
     <lastmod>${new Date(r.date).toISOString()}</lastmod>
@@ -424,14 +440,15 @@ app.get('/sitemap.xml', async (req, res) => {
     <priority>0.8</priority>
   </url>`).join('');
 
-    // Fetch categories
-    const categoryRows = await sql`SELECT slug FROM categories`;
-    const categoryUrls = categoryRows.map(r => `
+      // Fetch categories
+      const categoryRows = await sql`SELECT slug FROM categories`;
+      categoryUrls = categoryRows.map(r => `
   <url>
     <loc>${baseUrl}/category/${r.slug}</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>`).join('');
+    }
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
