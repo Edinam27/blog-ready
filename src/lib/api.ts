@@ -26,14 +26,28 @@ export interface Category {
 const BASE = "/api";
 
 export async function fetchPosts(): Promise<Post[]> {
-  // Always return local data to ensure new posts are visible
-  return posts;
+  try {
+    const res = await fetch(`${BASE}/posts`);
+    if (!res.ok) throw new Error('Failed to fetch posts');
+    return await res.json();
+  } catch (e) {
+    console.error("API connection failed, using local data", e);
+    return posts;
+  }
 }
 
 export async function fetchPostBySlug(slug: string): Promise<Post> {
-  const local = getPostBySlug(slug);
-  if (!local) throw new Error('Not found');
-  return local;
+  try {
+    const res = await fetch(`${BASE}/posts/${slug}`);
+    if (res.status === 404) throw new Error('Not found');
+    if (!res.ok) throw new Error('Failed to fetch post');
+    return await res.json();
+  } catch (e) {
+    console.error(`API connection failed for post ${slug}, using local data`, e);
+    const local = getPostBySlug(slug);
+    if (!local) throw new Error('Not found');
+    return local;
+  }
 }
 
 export async function createPost(payload: {
@@ -141,8 +155,14 @@ export async function updateUser(id: string, updates: Partial<User>): Promise<Us
 }
 
 export async function fetchCategories(): Promise<Category[]> {
-  // Always return local data to ensure new categories are visible
-  return localCategories.map(c => ({ id: c.slug, name: c.name, slug: c.slug }));
+  try {
+    const res = await fetch(`${BASE}/categories`);
+    if (!res.ok) throw new Error('Failed to fetch categories');
+    return await res.json();
+  } catch (e) {
+    console.error("API connection failed, using local categories", e);
+    return localCategories.map(c => ({ id: c.slug, name: c.name, slug: c.slug }));
+  }
 }
 
 export async function createCategory(payload: { name: string; slug: string; }): Promise<Category> {

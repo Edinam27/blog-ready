@@ -15,10 +15,20 @@ app.use(express.json());
 // Serve static files from the dist directory
 app.use(express.static(path.join(__dirname, '../dist')));
 
-const sql = neon(process.env.DATABASE_URL);
+let sql;
+if (process.env.DATABASE_URL) {
+  try {
+    sql = neon(process.env.DATABASE_URL);
+  } catch (e) {
+    console.error("Failed to initialize Neon database connection:", e);
+  }
+} else {
+  console.warn("DATABASE_URL is not defined. API will run in degraded mode without database access.");
+}
 
 // Auto-migrate: create posts table if not exists
 async function migrate() {
+  if (!sql) return;
   // Ensure pgcrypto is available for gen_random_uuid()
   try {
     await sql`CREATE EXTENSION IF NOT EXISTS pgcrypto;`;
@@ -390,6 +400,20 @@ app.get('/sitemap.xml', async (req, res) => {
     // Force the production URL for sitemap generation
     const baseUrl = 'https://blog-ready.vercel.app';
     
+    // Static routes
+    const staticRoutes = [
+      { url: '/', priority: '1.0', changefreq: 'daily' },
+      { url: '/resources', priority: '0.8', changefreq: 'weekly' },
+      { url: '/admin/login', priority: '0.1', changefreq: 'monthly' }
+    ];
+
+    const staticUrls = staticRoutes.map(route => `
+  <url>
+    <loc>${baseUrl}${route.url}</loc>
+    <changefreq>${route.changefreq}</changefreq>
+    <priority>${route.priority}</priority>
+  </url>`).join('');
+    
     // Fetch posts
     const postRows = await sql`SELECT slug, date FROM posts ORDER BY date DESC`;
     const postUrls = postRows.map(r => `
@@ -411,11 +435,7 @@ app.get('/sitemap.xml', async (req, res) => {
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>${baseUrl}/</loc>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>${categoryUrls}${postUrls}
+${staticUrls}${categoryUrls}${postUrls}
 </urlset>`;
 
     res.header('Content-Type', 'application/xml');
