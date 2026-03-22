@@ -81,6 +81,67 @@ export const categories: Category[] = [
 
 export const posts: Post[] = [
   {
+    id: "new-4",
+    title: "Plan Your 2026: Official CAGD Salary Payment Schedule for Ghana Government Workers",
+    slug: "plan-your-2026-cagd-salary-payment-schedule",
+    excerpt: "The Controller and Accountant-General's Department (CAGD) has released the official 2026 salary payment dates for civil servants and public sector workers.",
+    content: `
+      # Plan Your 2026: Official CAGD Salary Payment Schedule for Ghana Government Workers
+
+      Great news for all civil servants, Ghana Education Service (GES) staff, and public sector workers! The Controller and Accountant-General's Department (CAGD), under the leadership of Mr. Kwasi Agyei, has officially released the salary payment schedule for the entire 2026 fiscal year. 
+
+      This early announcement is designed to help government employees plan their finances, loans, savings, and general budgeting with confidence well ahead of time.
+
+      ## Key Takeaways for the 2026 Payment Calendar
+
+      The CAGD maintains a consistent payment window for most of the year, with a few notable exceptions to accommodate holidays and the start of the year.
+
+      *   **Standard Payment Window:** For the majority of the year, salaries will be credited between the **25th and 27th** of each month.
+      *   **Early January Payment:** To help workers recover from the holiday spending, January 2026 salaries will be paid early, on the **23rd**.
+      *   **Early December Payment:** In line with annual tradition, the December 2026 salary will be paid significantly earlier—on the **21st**—to allow ample time for Christmas preparations.
+
+      ## Official Month-by-Month Salary Payment Dates for 2026
+
+      Mark your calendars! Here is the complete breakdown as provided by the CAGD:
+
+      *   **January:** Friday, 23rd
+      *   **February:** Thursday, 26th
+      *   **March:** Thursday, 26th
+      *   **April:** Monday, 27th
+      *   **May:** Tuesday, 26th
+      *   **June:** Saturday, 27th
+      *   **July:** Monday, 27th
+      *   **August:** Thursday, 27th
+      *   **September:** Friday, 25th
+      *   **October:** Monday, 26th
+      *   **November:** Wednesday, 25th
+      *   **December:** Monday, 21st
+
+      ## Transparency and Adjustments
+
+      The CAGD has assured all stakeholders that they are committed to ensuring timely and accurate disbursements. These dates represent when banks will begin crediting employees' accounts. 
+
+      Should there be any unforeseen operational changes that require an adjustment to this schedule, the CAGD has promised to issue formal communications to all Ministries, Departments, Agencies, and financial institutions without delay.
+
+      ## Wrapping Up 2025
+
+      For those looking ahead to the end of the current year, remember that the remaining payments for 2025 are scheduled as follows:
+      *   **November 2025:** Friday, November 24th
+      *   **December 2025:** Wednesday, December 18th
+
+      By keeping this schedule handy, government workers across Ghana can ensure a smooth and financially predictable 2026.
+    `,
+    coverImage: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2700&q=80",
+    date: "2026-03-06",
+    author: authors[2],
+    category: categories[4],
+    tags: ["Ghana", "CAGD", "Salary", "Government", "Finance"],
+    isTrending: true,
+    isFeatured: true,
+    readTime: 4,
+    views: 3200
+  },
+  {
     id: "new-3",
     title: "The Ultimate Guide to Building a Productivity Tech Stack in 2026",
     slug: "ultimate-guide-productivity-tech-stack-2026",

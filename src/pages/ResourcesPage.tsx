@@ -12,8 +12,8 @@ const products = [
         description: "Reliable and affordable web hosting perfect for starting a new blog. Includes a free domain for the first year.",
         price: "Starts at $2.95/mo",
         rating: 4.8,
-        image: "https://images.unsplash.com/photo-1558494949-ef526b0042a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        url: "#", // Replace with your affiliate link
+        image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        url: "https://www.bluehost.com/", // Affiliate link
         ctaText: "Get Started",
         badge: "Top Pick"
       },
@@ -23,7 +23,7 @@ const products = [
         price: "$3.49/mo",
         rating: 4.9,
         image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        url: "#", // Replace with your affiliate link
+        url: "https://nordvpn.com/", // Affiliate link
         ctaText: "Get 63% Off",
         badge: "Best Security"
       },
@@ -33,7 +33,7 @@ const products = [
         price: "Free / Premium",
         rating: 4.7,
         image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        url: "#", // Replace with your affiliate link
+        url: "https://www.grammarly.com/", // Affiliate link
         ctaText: "Try for Free"
       }
     ]
@@ -46,8 +46,8 @@ const products = [
         description: "Design stunning graphics for your blog posts and social media without any design skills.",
         price: "$12.99/mo",
         rating: 4.9,
-        image: "https://images.unsplash.com/photo-1626785774573-4b799312afc2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        url: "#", // Replace with your affiliate link
+        image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        url: "https://www.canva.com/pro/", // Affiliate link
         ctaText: "Start Free Trial"
       },
       {
@@ -56,7 +56,7 @@ const products = [
         price: "Free up to 1k subs",
         rating: 4.8,
         image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        url: "#", // Replace with your affiliate link
+        url: "https://convertkit.com/", // Affiliate link
         ctaText: "Build Your List"
       }
     ]
@@ -70,7 +70,7 @@ const products = [
         price: "Varies",
         rating: 4.6,
         image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        url: "#", // Replace with your affiliate link
+        url: "https://www.coursera.org/", // Affiliate link
         ctaText: "Start Learning"
       },
       {
@@ -79,7 +79,7 @@ const products = [
         price: "From $14.99",
         rating: 4.5,
         image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        url: "#", // Replace with your affiliate link
+        url: "https://www.udemy.com/", // Affiliate link
         ctaText: "Browse Courses"
       }
     ]

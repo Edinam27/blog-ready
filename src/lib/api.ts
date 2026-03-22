@@ -65,36 +65,13 @@ export async function createPost(payload: {
   isFeatured?: boolean;
   readTime?: number;
 }): Promise<Post> {
-  try {
-    const res = await fetch(`${BASE}/posts`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-    if (!res.ok) throw new Error('Failed to create post');
-    return await res.json();
-  } catch (e) {
-    console.warn("API connection failed, simulating post creation locally", e);
-    // Simulate creation locally
-    const newPost: Post = {
-      id: Math.random().toString(36).substring(7),
-      title: payload.title,
-      slug: payload.slug,
-      excerpt: payload.excerpt,
-      content: payload.content,
-      coverImage: payload.coverImage || '',
-      date: payload.date || new Date().toISOString().split('T')[0],
-      author: { id: '1', name: payload.authorName || 'Admin' },
-      category: localCategories.find(c => c.slug === payload.categorySlug) || localCategories[0],
-      tags: payload.tags || [],
-      isTrending: payload.isTrending || false,
-      isFeatured: payload.isFeatured || false,
-      readTime: payload.readTime || 5,
-      views: 0
-    };
-    posts.unshift(newPost);
-    return newPost;
-  }
+  const res = await fetch(`${BASE}/posts`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) throw new Error('Failed to create post');
+  return res.json();
 }
 
 export async function updatePost(slug: string, payload: Partial<{
@@ -110,79 +87,39 @@ export async function updatePost(slug: string, payload: Partial<{
   isFeatured: boolean;
   readTime: number;
 }>): Promise<Post> {
-  try {
-    const res = await fetch(`${BASE}/posts/${slug}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-    
-    if (res.status === 404) {
-      // Upsert: create the post if it doesn't exist yet in the DB
-      const createPayload = {
-        title: payload.title || slug,
-        slug,
-        excerpt: payload.excerpt || '',
-        content: payload.content || '',
-        coverImage: payload.coverImage,
-        images: payload.images,
-        authorName: payload.authorName,
-        categorySlug: payload.categorySlug,
-        tags: payload.tags,
-        isTrending: payload.isTrending,
-        isFeatured: payload.isFeatured,
-        readTime: payload.readTime,
-      } as any;
-      return await createPost(createPayload);
-    }
-    
-    if (!res.ok) throw new Error('Failed to update post');
-    return await res.json();
-  } catch (e) {
-    console.warn(`API connection failed for post ${slug}, simulating update locally`, e);
-    // Simulate update locally
-    const existingIndex = posts.findIndex(p => p.slug === slug);
-    if (existingIndex >= 0) {
-      const existing = posts[existingIndex];
-      const updatedPost = {
-        ...existing,
-        ...payload,
-        category: payload.categorySlug 
-          ? (localCategories.find(c => c.slug === payload.categorySlug) || existing.category)
-          : existing.category,
-        author: payload.authorName 
-          ? { ...existing.author, name: payload.authorName }
-          : existing.author
-      };
-      posts[existingIndex] = updatedPost;
-      return updatedPost;
-    }
-    
-    // If not found locally, simulate creation
+  const res = await fetch(`${BASE}/posts/${slug}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  if (res.status === 404) {
+    // Upsert: create the post if it doesn't exist yet in the DB
     const createPayload = {
       title: payload.title || slug,
       slug,
       excerpt: payload.excerpt || '',
       content: payload.content || '',
-      ...payload
+      coverImage: payload.coverImage,
+      images: payload.images,
+      authorName: payload.authorName,
+      categorySlug: payload.categorySlug,
+      tags: payload.tags,
+      isTrending: payload.isTrending,
+      isFeatured: payload.isFeatured,
+      readTime: payload.readTime,
     } as any;
-    return await createPost(createPayload);
+    const created = await createPost(createPayload);
+    return created;
   }
+  if (!res.ok) throw new Error('Failed to update post');
+  return res.json();
 }
 
 export async function deletePost(slug: string): Promise<void> {
-  try {
-    const res = await fetch(`${BASE}/posts/${slug}`, {
-      method: 'DELETE',
-    });
-    if (!res.ok) throw new Error('Failed to delete post');
-  } catch (e) {
-    console.warn(`API connection failed for post ${slug}, simulating deletion locally`, e);
-    const index = posts.findIndex(p => p.slug === slug);
-    if (index >= 0) {
-      posts.splice(index, 1);
-    }
-  }
+  const res = await fetch(`${BASE}/posts/${slug}`, {
+    method: 'DELETE',
+  });
+  if (!res.ok) throw new Error('Failed to delete post');
 }
 
 export async function fetchUsers(): Promise<User[]> {
