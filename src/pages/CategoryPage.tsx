@@ -24,11 +24,11 @@ export default function CategoryPage() {
   return (
     <div className="container px-4 py-8 md:py-12">
       <Helmet>
-        <title>{category.name} | Modern Blog</title>
-        <meta name="description" content={`Browse posts about ${category.name}.`} />
+        <title>{category.name} | Mordern Blog</title>
+        <meta name="description" content={`Explore all articles in the ${category.name} category.`} />
         <link rel="canonical" href={`${window.location.origin}/category/${category.slug}`} />
-        <meta property="og:title" content={`${category.name} | Modern Blog`} />
-        <meta property="og:description" content={`Browse posts about ${category.name}.`} />
+        <meta property="og:title" content={`${category.name} | Mordern Blog`} />
+        <meta property="og:description" content={`Explore all articles in the ${category.name} category.`} />
         <meta property="og:url" content={`${window.location.origin}/category/${category.slug}`} />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">

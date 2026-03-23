@@ -11,7 +11,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <div>
             <Link to="/" className="flex items-center space-x-2">
-              <span className="inline-block font-bold text-2xl">ModernBlog</span>
+              <span className="inline-block font-bold text-2xl">MordernBlog</span>
             </Link>
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">
               A modern blog platform featuring the latest insights, trends, and
@@ -94,7 +94,7 @@ export function Footer() {
         <div className="mt-12 border-t pt-8">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <p className="text-sm text-muted-foreground">
-              &copy; {new Date().getFullYear()} ModernBlog. All rights reserved.
+              &copy; {new Date().getFullYear()} MordernBlog. All rights reserved.
             </p>
             <div className="flex gap-4">
               <Link

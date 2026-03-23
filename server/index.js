@@ -410,7 +410,7 @@ app.patch('/api/users/:id', async (req, res) => {
 app.get('/sitemap.xml', async (req, res) => {
   try {
     // Force the production URL for sitemap generation
-    const baseUrl = 'https://blog-ready.vercel.app';
+    const baseUrl = 'https://mordernblog.com';
     
     // Static routes
     const staticRoutes = [

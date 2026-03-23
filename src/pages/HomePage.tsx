@@ -15,14 +15,14 @@ export default function HomePage() {
   const featuredPosts = posts.filter((p) => p.isFeatured);
   
   return (
-    <div className="container px-4 py-8 md:py-12">
+    <div className="flex flex-col gap-16 pb-16">
       <Helmet>
-        <title>Modern Blog Platform</title>
-        <meta name="description" content="Discover insights, trends, and stories across categories on our modern blog." />
+        <title>Mordern Blog | Insights, Trends, and Stories</title>
+        <meta name="description" content="Discover the latest insights, trends, and stories across technology, business, lifestyle, and education on Mordern Blog." />
         <link rel="canonical" href={window.location.origin} />
-        <meta property="og:title" content="Modern Blog Platform" />
-        <meta property="og:description" content="Discover insights, trends, and stories across categories on our modern blog." />
-        <meta property="og:url" content={window.location.origin} />
+        <meta property="og:title" content="Mordern Blog | Insights, Trends, and Stories" />
+        <meta property="og:description" content="Discover the latest insights, trends, and stories across technology, business, lifestyle, and education on Mordern Blog." />
+        <meta property="og:type" content="website" />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">
           {JSON.stringify({

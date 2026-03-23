@@ -90,7 +90,7 @@ export default function ResourcesPage() {
   return (
     <div className="container py-10">
       <Helmet>
-        <title>Recommended Resources | Modern Blog</title>
+        <title>Recommended Resources | Mordern Blog</title>
         <meta name="description" content="Our top recommended tools and services for bloggers, entrepreneurs, and learners." />
       </Helmet>
       

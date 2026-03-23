@@ -24,7 +24,7 @@ export function Header() {
       <div className="container flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-6 md:gap-10">
           <Link to="/" className="flex items-center space-x-2">
-            <span className="inline-block font-bold text-2xl">ModernBlog</span>
+            <span className="inline-block font-bold text-2xl">MordernBlog</span>
           </Link>
           
           <nav className="hidden gap-6 md:flex">
@@ -69,7 +69,7 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="left">
               <Link to="/" className="flex items-center" onClick={() => setIsOpen(false)}>
-                <span className="font-bold text-xl">ModernBlog</span>
+                <span className="font-bold text-xl">MordernBlog</span>
               </Link>
               <nav className="mt-8 flex flex-col gap-5">
                 {categories.map((category) => (

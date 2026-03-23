@@ -91,7 +91,7 @@ export default function PostPage() {
   return (
     <>
       <Helmet>
-        <title>{post.title} | Modern Blog</title>
+        <title>{post.title} | Mordern Blog</title>
         <meta name="description" content={post.excerpt} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.excerpt} />
@@ -183,7 +183,7 @@ export default function PostPage() {
                 <div className="space-y-2 flex-1">
                   <h3 className="font-semibold text-lg">About {post.author.name}</h3>
                   <p className="text-muted-foreground">
-                    {author?.bio || post.author.bio || `Writer at Modern Blog covering ${post.category.name} and related topics.`}
+                    {author?.bio || post.author.bio || `Writer at Mordern Blog covering ${post.category.name} and related topics.`}
                   </p>
                   
                   <div className="flex flex-wrap gap-4 pt-2 text-sm text-muted-foreground">
