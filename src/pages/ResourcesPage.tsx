@@ -2,6 +2,7 @@
 import { Helmet } from "react-helmet-async";
 import { ProductCard } from "@/components/ProductCard";
 import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
 
 const products = [
   {
@@ -94,18 +95,29 @@ export default function ResourcesPage() {
         <meta name="description" content="Our top recommended tools and services for bloggers, entrepreneurs, and learners." />
       </Helmet>
       
-      <div className="mb-10 text-center">
+      <motion.div 
+        className="mb-10 text-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
         <h1 className="text-4xl font-bold tracking-tight md:text-5xl">
           Recommended Resources
         </h1>
         <p className="mt-4 text-xl text-muted-foreground max-w-2xl mx-auto">
           We've curated a list of the best tools and services to help you grow your business, improve your skills, and stay productive.
         </p>
-      </div>
+      </motion.div>
 
       <div className="space-y-16">
         {products.map((section, idx) => (
-          <section key={idx}>
+          <motion.section 
+            key={idx}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+          >
             <div className="flex items-center gap-4 mb-6">
               <h2 className="text-2xl font-bold">{section.category}</h2>
               <div className="h-px flex-1 bg-border" />
@@ -113,19 +125,33 @@ export default function ResourcesPage() {
             
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {section.items.map((item, i) => (
-                <ProductCard key={i} {...item} />
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                >
+                  <ProductCard {...item} />
+                </motion.div>
               ))}
             </div>
-          </section>
+          </motion.section>
         ))}
       </div>
       
-      <div className="mt-16 rounded-xl bg-muted p-8 text-center">
+      <motion.div 
+        className="mt-16 rounded-xl bg-muted p-8 text-center"
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
         <h3 className="text-xl font-semibold mb-2">Affiliate Disclosure</h3>
         <p className="text-muted-foreground">
           Some of the links on this page are affiliate links. This means if you click on the link and purchase the item, we may receive an affiliate commission at no extra cost to you. We only recommend products and services we trust.
         </p>
-      </div>
+      </motion.div>
     </div>
   );
 }

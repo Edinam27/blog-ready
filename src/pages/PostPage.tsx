@@ -16,6 +16,7 @@ import rehypeRaw from 'rehype-raw';
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import { AdUnit } from "@/components/AdUnit";
 import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
+import { motion } from "framer-motion";
 
 // Helper function to strip indentation from template literals
 const stripIndentation = (str: string) => {
@@ -101,7 +102,12 @@ export default function PostPage() {
       </Helmet>
       
       <article className="container py-10">
-        <div className="space-y-6 mb-10">
+        <motion.div 
+          className="space-y-6 mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="flex gap-2">
             <Badge variant="secondary" className="hover:bg-secondary/80">
               <Link to={`/category/${post.category.slug}`}>{post.category.name}</Link>
@@ -139,22 +145,32 @@ export default function PostPage() {
               <Share2 className="h-5 w-5" />
             </Button>
           </div>
-        </div>
+        </motion.div>
 
         <div className="grid gap-10 lg:grid-cols-[1fr_300px]">
           <div className="space-y-10 min-w-0">
-            <div className="relative overflow-hidden rounded-xl border bg-muted">
+            <motion.div 
+              className="relative overflow-hidden rounded-xl border bg-muted"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
               <img
                 src={post.coverImage}
                 alt={post.title}
                 className="w-full h-auto object-cover max-h-[600px]"
               />
-            </div>
+            </motion.div>
 
             <AffiliateDisclosure />
             <AdUnit slotId="top-content-ad" className="my-8" />
 
-            <div className="prose prose-lg dark:prose-invert max-w-none break-words">
+            <motion.div 
+              className="prose prose-lg dark:prose-invert max-w-none break-words"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
               <ReactMarkdown 
                 remarkPlugins={[remarkGfm]} 
                 rehypePlugins={[rehypeRaw, [rehypeSanitize, defaultSchema]]}
@@ -171,10 +187,16 @@ export default function PostPage() {
               >
                 {stripIndentation(post.content)}
               </ReactMarkdown>
-            </div>
+            </motion.div>
 
             {/* Author Bio Section */}
-            <Card className="bg-muted/30">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <Card className="bg-muted/30">
               <CardContent className="p-6 flex flex-col sm:flex-row gap-6 items-start">
                 <Avatar className="h-20 w-20 border-2 border-background">
                   <AvatarImage src={author?.photoUrl || post.author.avatar} />
@@ -221,12 +243,18 @@ export default function PostPage() {
                 </div>
               </CardContent>
             </Card>
+            </motion.div>
 
             <AdUnit slotId="bottom-content-ad" className="my-8" />
           </div>
           
           <aside className="space-y-8">
-            <div className="sticky top-24 space-y-8">
+            <motion.div 
+              className="sticky top-24 space-y-8"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
               <div className="space-y-4">
                 <h3 className="font-semibold text-lg">Related Products</h3>
                 <div className="space-y-4">
@@ -250,7 +278,7 @@ export default function PostPage() {
               </div>
 
               <AdUnit slotId="sidebar-ad" format="vertical" />
-            </div>
+            </motion.div>
           </aside>
         </div>
       </article>

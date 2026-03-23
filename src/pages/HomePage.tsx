@@ -4,6 +4,7 @@ import { PostCard } from "@/components/PostCard";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPosts, Post } from "@/lib/api";
 import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
 
 export default function HomePage() {
   const { data: posts = [], isLoading } = useQuery<Post[]>({
@@ -39,56 +40,104 @@ export default function HomePage() {
         </script>
       </Helmet>
       {/* Hero section */}
-      <section className="mb-12">
+      <motion.section 
+        className="mb-12"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
-            Modern Blog Platform
+            Mordern Blog Platform
           </h1>
           <p className="mt-4 text-muted-foreground md:text-lg">
             Discover insights, trends, and stories across various categories
           </p>
         </div>
-      </section>
+      </motion.section>
       
       {/* Trending posts section */}
-      <section className="mb-12">
+      <motion.section 
+        className="mb-12"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="mb-6 flex items-center justify-between">
           <h2 className="text-2xl font-bold">
             <span className="mr-2">🔥</span>Trending
           </h2>
         </div>
         {isLoading ? (
-          <div>Loading...</div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="h-64 rounded-xl bg-muted/50 animate-pulse" />
+            ))}
+          </div>
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {trendingPosts.slice(0, 3).map((post) => (
-              <PostCard key={post.id} post={post} variant="trending" />
+            {trendingPosts.slice(0, 3).map((post, i) => (
+              <motion.div
+                key={post.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <PostCard post={post} variant="trending" />
+              </motion.div>
             ))}
           </div>
         )}
-      </section>
+      </motion.section>
       
       {/* Featured posts section */}
-      <section className="mb-12">
+      <motion.section 
+        className="mb-12"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="mb-6 flex items-center justify-between">
           <h2 className="text-2xl font-bold">
             <span className="mr-2">🎯</span>Featured
           </h2>
         </div>
         {isLoading ? (
-          <div>Loading...</div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="h-64 rounded-xl bg-muted/50 animate-pulse" />
+            ))}
+          </div>
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredPosts.slice(0, 3).map((post) => (
-              <PostCard key={post.id} post={post} variant="featured" />
+            {featuredPosts.slice(0, 3).map((post, i) => (
+              <motion.div
+                key={post.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <PostCard post={post} variant="featured" />
+              </motion.div>
             ))}
           </div>
         )}
-      </section>
+      </motion.section>
       
       {/* Categories sections */}
-      {categories.map((category) => (
-        <section key={category.id} className="mb-12">
+      {categories.map((category, index) => (
+        <motion.section 
+          key={category.id} 
+          className="mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="mb-6 flex items-center justify-between">
             <h2 className="text-2xl font-bold">
               {category.name}
@@ -101,18 +150,30 @@ export default function HomePage() {
             </a>
           </div>
           {isLoading ? (
-            <div>Loading...</div>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="h-64 rounded-xl bg-muted/50 animate-pulse" />
+              ))}
+            </div>
           ) : (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {posts
-                .filter((post) => post.category.slug === category.slug)
-                .slice(0, 3)
-                .map((post) => (
-                  <PostCard key={post.id} post={post} />
+                .filter((post) => post.category.id === category.id)
+                .slice(0, 4)
+                .map((post, i) => (
+                  <motion.div
+                    key={post.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                  >
+                    <PostCard post={post} />
+                  </motion.div>
                 ))}
             </div>
           )}
-        </section>
+        </motion.section>
       ))}
     </div>
   );

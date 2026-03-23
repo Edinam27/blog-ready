@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchPosts, fetchCategories, Category, Post } from "@/lib/api";
 import { Helmet } from "react-helmet-async";
 import { Navigate, useParams } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function CategoryPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -42,21 +43,35 @@ export default function CategoryPage() {
           })}
         </script>
       </Helmet>
-      <section className="mb-12">
+      <motion.section 
+        className="mb-12"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="mb-8">
           <h1 className="text-3xl font-bold md:text-4xl">{category.name}</h1>
           <p className="mt-2 text-muted-foreground">
             Browse all posts in the {category.name} category
           </p>
         </div>
-      </section>
+      </motion.section>
       
       <section>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {isLoading ? (
-            <div>Loading...</div>
-          ) : filtered.map((post) => (
-            <PostCard key={post.id} post={post} />
+            [...Array(6)].map((_, i) => (
+              <div key={i} className="h-64 rounded-xl bg-muted/50 animate-pulse" />
+            ))
+          ) : filtered.map((post, i) => (
+            <motion.div
+              key={post.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+            >
+              <PostCard post={post} />
+            </motion.div>
           ))}
         </div>
         
