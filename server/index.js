@@ -297,6 +297,19 @@ app.patch('/api/categories/:id', async (req, res) => {
   }
 });
 
+app.delete('/api/categories/:id', async (req, res) => {
+  try {
+    if (!sql) throw new Error('No database connection');
+    const { id } = req.params;
+    const rows = await sql`DELETE FROM categories WHERE id = ${id} RETURNING id`;
+    if (rows.length === 0) return res.status(404).json({ error: 'Category not found' });
+    res.status(204).send();
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to delete category' });
+  }
+});
+
 // Users routes
 app.get('/api/users', async (req, res) => {
   try {
