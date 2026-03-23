@@ -12,6 +12,10 @@ import HomePage from "@/pages/HomePage";
 import CategoryPage from "@/pages/CategoryPage";
 import PostPage from "@/pages/PostPage";
 import ResourcesPage from "@/pages/ResourcesPage";
+import AboutPage from "@/pages/AboutPage";
+import ContactPage from "@/pages/ContactPage";
+import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
+import TermsPage from "@/pages/TermsPage";
 import LoginPage from "@/pages/admin/LoginPage";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import DashboardPage from "@/pages/admin/DashboardPage";
@@ -41,6 +45,10 @@ const App = () => (
               <Route path="category/:slug" element={<CategoryPage />} />
               <Route path="blog/:slug" element={<PostPage />} />
               <Route path="resources" element={<ResourcesPage />} />
+              <Route path="about" element={<AboutPage />} />
+              <Route path="contact" element={<ContactPage />} />
+              <Route path="privacy" element={<PrivacyPolicyPage />} />
+              <Route path="terms" element={<TermsPage />} />
             </Route>
             
             {/* Admin routes */}

@@ -39,28 +39,16 @@ export function Footer() {
               <h3 className="text-lg font-medium">Company</h3>
               <nav className="mt-4 flex flex-col gap-2">
                 <Link
-                  to="#"
+                  to="/about"
                   className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                 >
                   About Us
                 </Link>
                 <Link
-                  to="#"
+                  to="/contact"
                   className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Contact
-                </Link>
-                <Link
-                  to="#"
-                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  Careers
-                </Link>
-                <Link
-                  to="#"
-                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  Team
                 </Link>
               </nav>
             </div>
@@ -69,22 +57,16 @@ export function Footer() {
               <h3 className="text-lg font-medium">Legal</h3>
               <nav className="mt-4 flex flex-col gap-2">
                 <Link
-                  to="#"
+                  to="/privacy"
                   className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Privacy Policy
                 </Link>
                 <Link
-                  to="#"
+                  to="/terms"
                   className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                 >
                   Terms of Service
-                </Link>
-                <Link
-                  to="#"
-                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  Cookie Policy
                 </Link>
               </nav>
             </div>
