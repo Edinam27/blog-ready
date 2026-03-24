@@ -185,3 +185,28 @@ export async function updateCategory(id: string, payload: Partial<{ name: string
   return res.json();
 }
 
+function arrayBufferToBase64(buffer: ArrayBuffer) {
+  let binary = '';
+  const bytes = new Uint8Array(buffer);
+  const len = bytes.byteLength;
+  for (let i = 0; i < len; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return btoa(binary);
+}
+
+export async function uploadImage(file: File): Promise<{ url: string }> {
+  const arrayBuffer = await file.arrayBuffer();
+  const base64 = arrayBufferToBase64(arrayBuffer);
+  const payload = {
+    filename: file.name,
+    data: `data:${file.type};base64,${base64}`,
+  };
+  const res = await fetch(`${BASE}/upload-image`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) throw new Error('Failed to upload image');
+  return res.json();
+}

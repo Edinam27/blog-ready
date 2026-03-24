@@ -4,6 +4,7 @@ import { neon } from '@neondatabase/serverless';
 import 'dotenv/config';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,6 +15,7 @@ app.use(express.json());
 
 // Serve static files from the dist directory
 app.use(express.static(path.join(__dirname, '../dist')));
+app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
 
 let sql;
 if (process.env.DATABASE_URL) {
@@ -473,6 +475,26 @@ ${staticUrls}${categoryUrls}${postUrls}
   } catch (err) {
     console.error(err);
     res.status(500).send('Error generating sitemap');
+  }
+});
+
+app.post('/api/upload-image', async (req, res) => {
+  try {
+    const { filename, data } = req.body || {};
+    if (!filename || !data) return res.status(400).json({ error: 'filename and data are required' });
+    const dir = path.join(__dirname, '../public/uploads');
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    const safe = filename.replace(/[^a-zA-Z0-9._-]/g, '');
+    const stamp = Date.now();
+    const out = path.join(dir, `${stamp}-${safe}`);
+    const base64 = data.split(',').pop();
+    const buff = Buffer.from(base64, 'base64');
+    fs.writeFileSync(out, buff);
+    const url = `/uploads/${stamp}-${safe}`;
+    res.status(201).json({ url });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to upload image' });
   }
 });
 

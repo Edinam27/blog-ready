@@ -1,6 +1,6 @@
 import { useAuthStore } from "@/lib/auth";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createUser, fetchUsers, updateUser, User } from "@/lib/api";
+import { createUser, fetchUsers, updateUser, User, uploadImage } from "@/lib/api";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -31,6 +31,7 @@ export default function ProfilePage() {
   const [twitter, setTwitter] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [github, setGithub] = useState("");
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     if (existing) {
@@ -94,6 +95,20 @@ export default function ProfilePage() {
     ? photoUrl
     : `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(name || authUser.name)}`;
 
+  const handlePhotoUpload = async (file?: File) => {
+    if (!file) return;
+    setUploading(true);
+    try {
+      const res = await uploadImage(file);
+      setPhotoUrl(res.url);
+      toast.success("Photo uploaded");
+    } catch {
+      toast.error("Upload failed");
+    } finally {
+      setUploading(false);
+    }
+  };
+
   return (
     <div className="container max-w-4xl py-6">
       <div className="flex items-center justify-between mb-6">
@@ -134,6 +149,13 @@ export default function ProfilePage() {
                     <Label htmlFor="photoUrl">Profile Photo URL</Label>
                     <Input id="photoUrl" value={photoUrl} onChange={(e) => setPhotoUrl(e.target.value)} placeholder="https://example.com/me.jpg" />
                     <p className="text-xs text-muted-foreground">Paste a direct link to your photo</p>
+                    <div className="grid gap-2">
+                      <Label>Or upload</Label>
+                      <Input type="file" accept="image/*" onChange={(e) => handlePhotoUpload(e.target.files?.[0])} />
+                      <Button type="button" variant="secondary" disabled={uploading}>
+                        {uploading ? 'Uploading...' : 'Upload Photo'}
+                      </Button>
+                    </div>
                   </div>
                 </div>
 

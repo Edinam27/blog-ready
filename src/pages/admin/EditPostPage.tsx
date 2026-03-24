@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { fetchPostBySlug, updatePost, fetchCategories, Category, fetchUsers, User } from "@/lib/api";
+import { fetchPostBySlug, updatePost, fetchCategories, Category, fetchUsers, User, uploadImage } from "@/lib/api";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { 
@@ -35,6 +35,7 @@ export default function EditPostPage() {
   const [authorName, setAuthorName] = useState<string>("");
   const { data: users = [] } = useQuery<User[]>({ queryKey: ['users'], queryFn: fetchUsers });
   const { data: categories = [] } = useQuery<Category[]>({ queryKey: ['categories'], queryFn: fetchCategories });
+  const [uploadingCover, setUploadingCover] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -95,6 +96,20 @@ export default function EditPostPage() {
       el.selectionStart = el.selectionEnd = pos;
       el.focus();
     });
+  };
+
+  const handleCoverUpload = async (file?: File) => {
+    if (!file) return;
+    setUploadingCover(true);
+    try {
+      const res = await uploadImage(file);
+      setCoverImage(res.url);
+      toast({ title: "Cover uploaded", description: "Cover image URL set" });
+    } catch {
+      toast({ title: "Error", description: "Failed to upload cover image" });
+    } finally {
+      setUploadingCover(false);
+    }
   };
 
   return (
@@ -162,6 +177,12 @@ export default function EditPostPage() {
               <div className="space-y-2">
                 <Label htmlFor="coverImage">Cover Image URL</Label>
                 <Input id="coverImage" type="url" value={coverImage} onChange={(e) => setCoverImage(e.target.value)} />
+                <div className="grid gap-2">
+                  <Input type="file" accept="image/*" onChange={(e) => handleCoverUpload(e.target.files?.[0])} />
+                  <Button type="button" variant="secondary" disabled={uploadingCover}>
+                    {uploadingCover ? 'Uploading...' : 'Upload Cover'}
+                  </Button>
+                </div>
               </div>
 
               <div className="space-y-2">
