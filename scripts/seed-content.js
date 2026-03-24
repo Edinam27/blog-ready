@@ -81,7 +81,7 @@ As we look up at the night sky tonight, the Moon is no longer just a dead, roman
     tags: ["Space", "NASA", "Science", "Technology", "Future"],
     isTrending: true,
     isFeatured: true,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 9
   },
   {
@@ -146,7 +146,7 @@ Democracy relies on a shared set of facts. When citizens can no longer trust the
     tags: ["Politics", "Deepfake", "AI", "Cybersecurity", "Elections"],
     isTrending: true,
     isFeatured: false,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 10
   },
   {
@@ -213,7 +213,7 @@ Whether UBI is a scalable, macroeconomic solution or a well-intentioned fiscal d
     tags: ["Politics", "Economy", "UBI", "California", "Social Policy"],
     isTrending: false,
     isFeatured: true,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 9
   },
   {
@@ -286,7 +286,7 @@ The Ozempic Economy is proof that human biology and global economics are inextri
     tags: ["Health", "Economy", "Ozempic", "Business", "Trends"],
     isTrending: true,
     isFeatured: false,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 8
   },
   {
@@ -370,7 +370,7 @@ By keeping this comprehensive schedule handy, bookmarking this page, and impleme
     tags: ["Ghana", "CAGD", "Salary", "Government", "Finance"],
     isTrending: true,
     isFeatured: true,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 10
   },
   {
@@ -439,7 +439,7 @@ As we navigate 2026, the need for wise leadership, robust ethical frameworks, an
     tags: ["Global News", "AI", "Middle East", "Conflict", "Technology"],
     isTrending: true,
     isFeatured: true,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 11
   },
   {
@@ -506,7 +506,7 @@ As we look ahead to the monumental 70th anniversary next year, the foundation be
     tags: ["Ghana", "Independence Day", "Economy", "Technology", "5G"],
     isTrending: true,
     isFeatured: true,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 10
   },
   // AI/Tools & Tech
@@ -578,7 +578,7 @@ The announcement of the 10,000-qubit processor is not just another tech news sto
     tags: ["Quantum Computing", "IBM", "Technology", "Future", "Innovation"],
     isTrending: true,
     isFeatured: false,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 9
   },
   {
@@ -637,7 +637,7 @@ While the Vision Pro 2 may not replace the iPhone overnight—you still wouldn't
     tags: ["Apple", "Vision Pro", "VR", "AR", "Tech Hardware"],
     isTrending: true,
     isFeatured: true,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 9
   },
   {
@@ -700,7 +700,7 @@ The AI revolution is not about replacing humans; it's about replacing tasks. By 
     tags: ['AI Tools', 'Productivity Software', 'Tech Reviews', '2026 Trends'],
     isTrending: true,
     isFeatured: false,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 8
   },
   {
@@ -789,7 +789,7 @@ Start with a blank piece of paper. Map out your ideal workflow first, and *then*
     tags: ['Productivity Software', 'Tech Reviews', 'Workflow', 'Guide'],
     isTrending: false,
     isFeatured: true,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 10
   },
   
@@ -864,7 +864,7 @@ The coordinated central bank rate cut is a historic moment that signals a massiv
     tags: ["Markets", "Investing", "Interest Rates", "Economy", "Finance"],
     isTrending: true,
     isFeatured: true,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 4
   },
   {
@@ -931,7 +931,7 @@ The fractional executive model represents a rare win-win scenario in the labor m
     tags: ["Career", "Gig Economy", "Business", "Future of Work"],
     isTrending: true,
     isFeatured: false,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 5
   },
   {
@@ -1020,7 +1020,7 @@ In an inflationary environment, cash is trash unless it is working for you. A Hi
     tags: ['Personal Finance', 'Investing', 'Banking', 'Wealth Building'],
     isTrending: false,
     isFeatured: false,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 7
   },
   {
@@ -1103,7 +1103,7 @@ Financial freedom isn't about restriction; it's about intentionality. Start dire
     tags: ['Debt Payoff', 'Investing', 'Side Hustles', 'Budgeting'],
     isTrending: false,
     isFeatured: true,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 6
   },
   
@@ -1170,7 +1170,7 @@ We are witnessing the end of the industrial-era model of education—where stude
     tags: ["Education", "EdTech", "AI", "Learning"],
     isTrending: true,
     isFeatured: false,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 4
   },
   {
@@ -1232,7 +1232,7 @@ However, for the vast majority of the white-collar workforce, the bachelor's deg
     tags: ["Education", "College", "Career", "Future of Work"],
     isTrending: true,
     isFeatured: true,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 5
   },
   {
@@ -1302,7 +1302,7 @@ Microlearning acknowledges that learning is not an event that happens in a class
     tags: ['Education', 'Upskilling', 'Microlearning', 'Career Growth'],
     isTrending: false,
     isFeatured: false,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 8
   },
   {
@@ -1368,7 +1368,7 @@ The homeschooling boom of 2026 is a testament to the fact that parents are no lo
     tags: ['Education', 'Homeschooling', 'Parenting', 'EdTech', 'Trends'],
     isTrending: true,
     isFeatured: false,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 9
   },
   {
@@ -1433,7 +1433,7 @@ True educational reform will not be achieved by adding another standardized test
     tags: ['Education', 'Financial Literacy', 'Curriculum', 'Student Debt'],
     isTrending: false,
     isFeatured: true,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 10
   },
   {
@@ -1510,7 +1510,7 @@ The deprecation of third-party cookies is not the end of digital marketing; it i
     tags: ['Advertising', 'Data Privacy', 'PPC', 'Marketing Strategy'],
     isTrending: true,
     isFeatured: false,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 8
   },
   {
@@ -1580,7 +1580,7 @@ The era of shouting at consumers through a megaphone is ending. The brands that 
     tags: ['Community', 'B2B', 'Growth Strategy', 'Customer Retention'],
     isTrending: false,
     isFeatured: true,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 9
   },
   {
@@ -1651,7 +1651,7 @@ To survive in this new landscape, brands must stop thinking like retailers and s
     tags: ['E-commerce', 'Video Marketing', 'TikTok', 'Social Media'],
     isTrending: true,
     isFeatured: false,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 8
   },
   {
@@ -1721,7 +1721,7 @@ The era of corporate jargon and sterile professionalism is over. The B2B compani
     tags: ['B2B', 'Marketing Strategy', 'Content Creation', 'Brand Building'],
     isTrending: false,
     isFeatured: true,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 10
   },
   // Lifestyle
@@ -1786,7 +1786,7 @@ Digital Detox Tourism is not a fad; it is a necessary counterbalance to the mode
     tags: ["Travel", "Wellness", "Mental Health", "Lifestyle"],
     isTrending: true,
     isFeatured: false,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 4
   },
   {
@@ -1849,7 +1849,7 @@ Slow living is a powerful reminder that life is not a race to the finish line, n
     tags: ["Slow Living", "Culture", "Gen Z", "Wellness"],
     isTrending: true,
     isFeatured: true,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 5
   },
   {
@@ -1910,7 +1910,7 @@ The digital world offered us infinite convenience, but we traded away our commun
     tags: ["Culture", "Mental Health", "Community", "Trends"],
     isTrending: true,
     isFeatured: false,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 8
   },
   {
@@ -1980,7 +1980,7 @@ Quiet luxury is more than just a passing fashion trend; it is a shift in consume
     tags: ["Fashion", "Style", "Trends", "Culture"],
     isTrending: false,
     isFeatured: true,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 7
   },
   {
@@ -2050,7 +2050,7 @@ The fitness industry has finally matured. We are moving past the superficial met
     tags: ["Fitness", "Health", "Mobility", "Wellness", "Longevity"],
     isTrending: true,
     isFeatured: false,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 9
   },
   {
@@ -2120,7 +2120,7 @@ The sober curious movement represents a profound maturation of our culture's rel
     tags: ["Health", "Sober Curious", "Wellness", "Culture", "Mental Health"],
     isTrending: true,
     isFeatured: true,
-    authorName: 'Admin',
+    authorName: "Edinam Ayisadu",
     readTime: 9
   }
 ];

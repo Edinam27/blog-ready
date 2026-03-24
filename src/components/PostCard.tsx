@@ -58,11 +58,17 @@ export function PostCard({ post, variant = "default" }: PostCardProps) {
         
         <CardFooter className="flex items-center justify-between p-4 pt-0 text-sm">
           <div className="flex items-center gap-2">
-            <img 
-              src={post.author.avatar} 
-              alt={post.author.name} 
-              className="h-6 w-6 rounded-full object-cover"
-            />
+            {post.author.avatar ? (
+              <img 
+                src={post.author.avatar} 
+                alt={post.author.name} 
+                className="h-6 w-6 rounded-full object-cover"
+              />
+            ) : (
+              <div className="h-6 w-6 rounded-full bg-primary/20 flex items-center justify-center text-xs font-medium text-primary">
+                {post.author.name.charAt(0).toUpperCase()}
+              </div>
+            )}
             <span className="font-medium">{post.author.name}</span>
           </div>
           <time dateTime={post.date} className="text-muted-foreground">

@@ -101,7 +101,7 @@ function mapRow(row) {
     coverImage: row.cover_image,
     images: Array.isArray(row.images) ? row.images : [],
     date: row.date,
-    author: { id: '', name: row.author_name },
+    author: { id: '', name: row.author_name, avatar: row.author_photo },
     category: {
       id: row.category_id || '',
       name: row.category_name || row.category_slug || '',
@@ -124,9 +124,10 @@ app.get('/api/posts', async (req, res) => {
   try {
     if (!sql) throw new Error('No database connection');
     const rows = await sql`
-      SELECT p.*, c.id as category_id, c.name as category_name, c.slug as category_slug
+      SELECT p.*, c.id as category_id, c.name as category_name, c.slug as category_slug, u.photo_url as author_photo
       FROM posts p
       LEFT JOIN categories c ON p.category_slug = c.slug
+      LEFT JOIN users u ON p.author_name = u.name
       ORDER BY p.date DESC
     `;
     res.json(rows.map(mapRow));
@@ -141,9 +142,10 @@ app.get('/api/posts/:slug', async (req, res) => {
     if (!sql) throw new Error('No database connection');
     const { slug } = req.params;
     const rows = await sql`
-      SELECT p.*, c.id as category_id, c.name as category_name, c.slug as category_slug
+      SELECT p.*, c.id as category_id, c.name as category_name, c.slug as category_slug, u.photo_url as author_photo
       FROM posts p
       LEFT JOIN categories c ON p.category_slug = c.slug
+      LEFT JOIN users u ON p.author_name = u.name
       WHERE p.slug = ${slug}
       LIMIT 1
     `;
