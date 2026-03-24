@@ -209,7 +209,7 @@ The California Prosperity Project is in its infancy, but the early anecdotal rep
 
 Whether UBI is a scalable, macroeconomic solution or a well-intentioned fiscal disaster will not be known until the trial concludes in 2029. But one thing is certain: as the nature of work changes, the nature of the social safety net must change with it. California has just taken the first massive leap into the unknown.
     `,
-    coverImage: "https://images.unsplash.com/photo-1580519542036-ed47f3e42214?ixlib=rb-1.2.1&auto=format&fit=crop&w=2700&q=80",
+    coverImage: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2700&q=80",
     tags: ["Politics", "Economy", "UBI", "California", "Social Policy"],
     isTrending: false,
     isFeatured: true,
@@ -282,7 +282,7 @@ The debate is raging in Congress: Does the massive upfront cost of the drug outw
 
 The Ozempic Economy is proof that human biology and global economics are inextricably linked. A single peptide injection has managed to do what decades of public health campaigns could not: alter the consumption habits of the Western world. As patents expire and cheaper, generic versions of these drugs eventually hit the market later in the decade, the ripple effects will only grow larger, fundamentally rewriting the business models of the Fortune 500.
     `,
-    coverImage: "https://images.unsplash.com/photo-1584308666744-24d5e4b7b3b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=2700&q=80",
+    coverImage: "https://images.unsplash.com/photo-1585435557343-3b092031a831?ixlib=rb-1.2.1&auto=format&fit=crop&w=2700&q=80",
     tags: ["Health", "Economy", "Ozempic", "Business", "Trends"],
     isTrending: true,
     isFeatured: false,
