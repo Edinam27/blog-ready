@@ -73,6 +73,7 @@ async function migrate() {
   
   // Add columns if they don't exist (for existing tables)
   try {
+    await sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS photo_url TEXT`;
     await sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS social_links JSONB DEFAULT '{}'::jsonb`;
     await sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS location TEXT`;
     await sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS website TEXT`;
