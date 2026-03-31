@@ -8,7 +8,7 @@ export default function ContactPage() {
     <div className="container py-12 md:py-20 max-w-2xl">
       <Helmet>
         <title>Contact Us | Mordern Blog</title>
-        <meta name="description" content="Get in touch with the Mordern Blog team for inquiries, partnerships, or support." />
+        <meta name="description" content="Get in touch with the Mordern Blog team. Whether you have questions about our content, want to explore partnership opportunities, or need support, we are here to help." />
       </Helmet>
 
       <div className="space-y-8">

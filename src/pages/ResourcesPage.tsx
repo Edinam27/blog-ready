@@ -92,7 +92,7 @@ export default function ResourcesPage() {
     <div className="container py-10">
       <Helmet>
         <title>Recommended Resources | Mordern Blog</title>
-        <meta name="description" content="Our top recommended tools and services for bloggers, entrepreneurs, and learners." />
+        <meta name="description" content="Discover our hand-picked, top recommended tools, platforms, and services designed to help bloggers, entrepreneurs, and lifelong learners succeed online." />
       </Helmet>
       
       <motion.div 

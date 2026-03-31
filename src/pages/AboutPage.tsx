@@ -5,7 +5,7 @@ export default function AboutPage() {
     <div className="container py-12 md:py-20 max-w-4xl">
       <Helmet>
         <title>About Us | Mordern Blog</title>
-        <meta name="description" content="Learn more about Mordern Blog, our mission, and the team behind our content." />
+        <meta name="description" content="Learn about the mission, values, and editorial standards behind Mordern Blog. We are dedicated to providing readers with high-quality, actionable insights across technology, finance, and digital marketing." />
       </Helmet>
 
       <div className="space-y-8">

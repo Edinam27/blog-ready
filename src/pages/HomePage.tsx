@@ -19,10 +19,10 @@ export default function HomePage() {
     <div className="flex flex-col gap-16 pb-16">
       <Helmet>
         <title>Mordern Blog | Insights, Trends, and Stories</title>
-        <meta name="description" content="Discover the latest insights, trends, and stories across technology, business, lifestyle, and education on Mordern Blog." />
+        <meta name="description" content="Welcome to Mordern Blog. Discover in-depth, expert-written articles covering the latest trends in artificial intelligence, digital marketing, personal finance, education, and lifestyle. Stay informed and ahead of the curve." />
         <link rel="canonical" href={window.location.origin} />
         <meta property="og:title" content="Mordern Blog | Insights, Trends, and Stories" />
-        <meta property="og:description" content="Discover the latest insights, trends, and stories across technology, business, lifestyle, and education on Mordern Blog." />
+        <meta property="og:description" content="Welcome to Mordern Blog. Discover in-depth, expert-written articles covering the latest trends in artificial intelligence, digital marketing, personal finance, education, and lifestyle. Stay informed and ahead of the curve." />
         <meta property="og:type" content="website" />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">
