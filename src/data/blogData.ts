@@ -236,7 +236,7 @@ export const posts: Post[] = [
 
       As the flags wave and the anthem plays today, the mood is one of reflection and determination. Ghana at 69 is a nation aware of its challenges but boldly stepping into a digital and economically resilient future.
     `,
-    coverImage: "https://images.unsplash.com/photo-1543167123-0852026219c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=2700&q=80",
+    coverImage: "https://images.unsplash.com/photo-1516245834210-c4c142787335?ixlib=rb-1.2.1&auto=format&fit=crop&w=2700&q=80",
     date: "2026-03-06",
     author: authors[2],
     category: categories[4],
