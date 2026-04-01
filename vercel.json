@@ -4,15 +4,15 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/api/[...slug].js"
+      "destination": "/api/index"
     },
     {
       "source": "/sitemap.xml",
-      "destination": "/api/[...slug].js"
+      "destination": "/api/index"
     },
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": "/"
     }
   ]
 }
