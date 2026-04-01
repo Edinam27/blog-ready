@@ -12,14 +12,32 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
-// Configure CORS specifically for Vercel production environment
+// Global middleware to handle preflight and CORS explicitly
+app.use((req, res, next) => {
+  const allowedOrigins = ['https://mordernblog.com', 'https://www.mordernblog.com', 'http://localhost:8080'];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+  
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+  next();
+});
+
+// Configure CORS using the package as a fallback
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
     ? ['https://mordernblog.com', 'https://www.mordernblog.com'] 
     : '*',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   credentials: true,
-  optionsSuccessStatus: 204
+  optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
 
