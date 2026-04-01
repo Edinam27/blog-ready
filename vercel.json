@@ -18,15 +18,12 @@
       "destination": "/api/index.js"
     },
     {
+      "source": "/sitemap.xml",
+      "destination": "/api/index.js"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/sitemap.xml",
-      "destination": "/api/sitemap.xml",
-      "permanent": true
     }
   ]
 }
