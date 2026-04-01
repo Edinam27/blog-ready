@@ -420,7 +420,7 @@ Building redundant factories, hoarding inventory in local warehouses, and paying
 
 The restructuring of the global supply chain is a painful, multi-trillion-dollar transition. We are unwinding forty years of entrenched globalization in the span of a single decade. However, the end result will be a more robust, diversified, and technologically advanced global economy—one that can withstand the inevitable geopolitical shocks of the 21st century without leaving consumers staring at empty store shelves.
     `,
-    coverImage: "https://images.unsplash.com/photo-1586528116311-ad8ed7c83a7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=2700&q=80",
+    coverImage: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=2700&q=80",
     tags: ["Economy", "Supply Chain", "Global News", "Business", "Manufacturing"],
     isTrending: true,
     isFeatured: false,
