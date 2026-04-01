@@ -6,6 +6,7 @@ export default function AboutPage() {
       <Helmet>
         <title>About Us | Mordern Blog</title>
         <meta name="description" content="Learn about the mission, values, and editorial standards behind Mordern Blog. We are dedicated to providing readers with high-quality, actionable insights across technology, finance, and digital marketing." />
+        <link rel="canonical" href="https://mordernblog.com/about" />
       </Helmet>
 
       <div className="space-y-8">

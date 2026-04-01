@@ -9,6 +9,7 @@ export default function ContactPage() {
       <Helmet>
         <title>Contact Us | Mordern Blog</title>
         <meta name="description" content="Get in touch with the Mordern Blog team. Whether you have questions about our content, want to explore partnership opportunities, or need support, we are here to help." />
+        <link rel="canonical" href="https://mordernblog.com/contact" />
       </Helmet>
 
       <div className="space-y-8">

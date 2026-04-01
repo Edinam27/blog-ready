@@ -27,18 +27,18 @@ export default function CategoryPage() {
       <Helmet>
         <title>{category.name} | Mordern Blog</title>
         <meta name="description" content={`Explore comprehensive guides, breaking news, and expert insights in the ${category.name} category. Stay updated with the latest trends and stories on Mordern Blog.`} />
-        <link rel="canonical" href={`${window.location.origin}/category/${category.slug}`} />
+        <link rel="canonical" href={`https://mordernblog.com/category/${category.slug}`} />
         <meta property="og:title" content={`${category.name} | Mordern Blog`} />
         <meta property="og:description" content={`Explore comprehensive guides, breaking news, and expert insights in the ${category.name} category. Stay updated with the latest trends and stories on Mordern Blog.`} />
-        <meta property="og:url" content={`${window.location.origin}/category/${category.slug}`} />
+        <meta property="og:url" content={`https://mordernblog.com/category/${category.slug}`} />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
-              {"@type":"ListItem","position":1,"name":"Home","item":window.location.origin},
-              {"@type":"ListItem","position":2,"name":category.name,"item":`${window.location.origin}/category/${category.slug}`}
+              {"@type":"ListItem","position":1,"name":"Home","item":"https://mordernblog.com"},
+              {"@type":"ListItem","position":2,"name":category.name,"item":`https://mordernblog.com/category/${category.slug}`}
             ]
           })}
         </script>

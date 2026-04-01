@@ -24,16 +24,16 @@ export default function HomePage() {
         <meta property="og:title" content="Mordern Blog | Insights, Trends, and Stories" />
         <meta property="og:description" content="Welcome to Mordern Blog. Discover in-depth, expert-written articles covering the latest trends in artificial intelligence, digital marketing, personal finance, education, and lifestyle. Stay informed and ahead of the curve." />
         <meta property="og:type" content="website" />
-        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://mordernblog.com/" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebSite",
-            "name": "Modern Blog",
-            "url": window.location.origin,
+            "name": "Mordern Blog",
+            "url": "https://mordernblog.com",
             "potentialAction": {
               "@type": "SearchAction",
-              "target": `${window.location.origin}/?q={search_term_string}`,
+              "target": "https://mordernblog.com/?q={search_term_string}",
               "query-input": "required name=search_term_string"
             }
           })}

@@ -98,6 +98,7 @@ export default function PostPage() {
         <meta property="og:description" content={post.excerpt} />
         <meta property="og:image" content={post.coverImage} />
         <meta name="twitter:card" content="summary_large_image" />
+        <link rel="canonical" href={`https://mordernblog.com/blog/${post.slug}`} />
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Helmet>
       

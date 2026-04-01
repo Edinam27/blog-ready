@@ -5,6 +5,7 @@ import 'dotenv/config';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
+import fetch from 'node-fetch'; // Needed for IndexNow
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,6 +17,38 @@ app.use(express.json());
 // Serve static files from the dist directory
 app.use(express.static(path.join(__dirname, '../dist')));
 app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
+
+// IndexNow configuration
+const INDEXNOW_KEY = process.env.INDEXNOW_KEY || 'blog-ready-indexnow-key-12345';
+const HOSTNAME = process.env.HOST_URL || 'https://mordernblog.com';
+
+// Serve the IndexNow key file dynamically
+app.get(`/${INDEXNOW_KEY}.txt`, (req, res) => {
+  res.type('text/plain').send(INDEXNOW_KEY);
+});
+
+async function notifyIndexNow(urlList) {
+  if (!Array.isArray(urlList)) urlList = [urlList];
+  try {
+    const response = await fetch('https://api.indexnow.org/indexnow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body: JSON.stringify({
+        host: HOSTNAME.replace(/^https?:\/\//, ''),
+        key: INDEXNOW_KEY,
+        keyLocation: `${HOSTNAME}/${INDEXNOW_KEY}.txt`,
+        urlList: urlList.map(u => `${HOSTNAME}${u}`)
+      })
+    });
+    if (response.ok) {
+      console.log(`✅ IndexNow notification sent for ${urlList.length} URLs`);
+    } else {
+      console.error(`❌ IndexNow error: ${response.status} - ${await response.text()}`);
+    }
+  } catch (error) {
+    console.error('❌ Failed to notify IndexNow:', error);
+  }
+}
 
 let sql;
 if (process.env.DATABASE_URL) {
@@ -183,6 +216,12 @@ app.post('/api/posts', async (req, res) => {
         ${title}, ${slug}, ${excerpt}, ${content}, ${coverImage}, ${JSON.stringify(images)}, ${date || new Date()}, ${authorName}, ${categorySlug}, ${tags}, ${isTrending}, ${isFeatured}, ${readTime}
       ) RETURNING *
     `;
+    
+    // Notify Bing IndexNow about the new post
+    if (inserted[0]) {
+      notifyIndexNow([`/blog/${inserted[0].slug}`]);
+    }
+    
     res.status(201).json(mapRow(inserted[0]));
   } catch (err) {
     console.error(err);
@@ -227,6 +266,10 @@ app.patch('/api/posts/:slug', async (req, res) => {
       RETURNING *
     `;
     if (rows.length === 0) return res.status(404).json({ error: 'Post not found' });
+    
+    // Notify Bing IndexNow about the updated post
+    notifyIndexNow([`/blog/${rows[0].slug}`]);
+    
     res.json(mapRow(rows[0]));
   } catch (err) {
     console.error(err);
@@ -244,6 +287,10 @@ app.delete('/api/posts/:slug', async (req, res) => {
       RETURNING *
     `;
     if (rows.length === 0) return res.status(404).json({ error: 'Post not found' });
+    
+    // Notify Bing IndexNow about the removed post
+    notifyIndexNow([`/blog/${slug}`]);
+    
     res.json({ message: 'Post deleted successfully' });
   } catch (err) {
     console.error(err);

@@ -178,6 +178,7 @@ export default function ResourcesPage() {
       <Helmet>
         <title>Recommended Resources | Mordern Blog</title>
         <meta name="description" content="Discover our hand-picked, top recommended tools, platforms, and services designed to help bloggers, entrepreneurs, and lifelong learners succeed online." />
+        <link rel="canonical" href="https://mordernblog.com/resources" />
       </Helmet>
       
       <motion.div 
