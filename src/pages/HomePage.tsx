@@ -20,11 +20,10 @@ export default function HomePage() {
       <Helmet>
         <title>Mordern Blog | Insights, Trends, and Stories</title>
         <meta name="description" content="Welcome to Mordern Blog. Discover in-depth, expert-written articles covering the latest trends in artificial intelligence, digital marketing, personal finance, education, and lifestyle. Stay informed and ahead of the curve." />
-        <link rel="canonical" href={window.location.origin} />
+        <link rel="canonical" href="https://mordernblog.com" />
         <meta property="og:title" content="Mordern Blog | Insights, Trends, and Stories" />
         <meta property="og:description" content="Welcome to Mordern Blog. Discover in-depth, expert-written articles covering the latest trends in artificial intelligence, digital marketing, personal finance, education, and lifestyle. Stay informed and ahead of the curve." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://mordernblog.com/" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
