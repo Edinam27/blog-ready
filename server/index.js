@@ -472,7 +472,7 @@ app.patch('/api/users/:id', async (req, res) => {
   }
 });
 
-app.get('/sitemap.xml', async (req, res) => {
+app.get('/api/sitemap.xml', async (req, res) => {
   try {
     // Force the production URL for sitemap generation
     const baseUrl = 'https://mordernblog.com';
