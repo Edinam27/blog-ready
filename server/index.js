@@ -14,9 +14,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from the dist directory
-app.use(express.static(path.join(__dirname, '../dist')));
-app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
+// In production on Vercel, static files are served by Vercel's CDN.
+// In local dev, Vite serves the frontend. 
+// We only serve uploads locally if needed.
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
+}
 
 // IndexNow configuration
 const INDEXNOW_KEY = process.env.INDEXNOW_KEY || 'blog-ready-indexnow-key-12345';
@@ -548,9 +551,9 @@ app.post('/api/upload-image', async (req, res) => {
   }
 });
 
-// Handle all other routes by serving the index.html file
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../dist/index.html'));
+// 404 handler for API routes
+app.use((req, res) => {
+  res.status(404).json({ error: 'API route not found' });
 });
 
 const port = process.env.API_PORT || 3001;
