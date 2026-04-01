@@ -11,7 +11,18 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-app.use(cors());
+
+// Configure CORS specifically for Vercel production environment
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production' 
+    ? ['https://mordernblog.com', 'https://www.mordernblog.com'] 
+    : '*',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204
+};
+app.use(cors(corsOptions));
+
 app.use(express.json());
 
 // In production on Vercel, static files are served by Vercel's CDN.
