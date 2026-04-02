@@ -52,7 +52,7 @@ if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
 
 // IndexNow configuration
 const INDEXNOW_KEY = process.env.INDEXNOW_KEY || 'blog-ready-indexnow-key-12345';
-const HOSTNAME = process.env.HOST_URL || 'https://www.mordernblog.com';
+const HOSTNAME = process.env.HOST_URL || 'https://mordernblog.com';
 
 // Serve the IndexNow key file dynamically
 app.get(`/${INDEXNOW_KEY}.txt`, (req, res) => {
@@ -507,11 +507,11 @@ app.patch('/api/users/:id', async (req, res) => {
 app.get(['/api/sitemap.xml', '/sitemap.xml'], async (req, res) => {
   try {
     // Force the production URL for sitemap generation
-    const baseUrl = 'https://www.mordernblog.com';
+    const baseUrl = 'https://mordernblog.com';
     
     // Static routes
     const staticRoutes = [
-      { url: '/', priority: '1.0', changefreq: 'daily' },
+      { url: '', priority: '1.0', changefreq: 'daily' },
       { url: '/resources', priority: '0.8', changefreq: 'weekly' },
       { url: '/admin/login', priority: '0.1', changefreq: 'monthly' }
     ];
