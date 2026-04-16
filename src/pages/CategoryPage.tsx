@@ -10,16 +10,32 @@ export default function CategoryPage() {
   const { slug } = useParams<{ slug: string }>();
   
   if (!slug) {
-    return <Navigate to="/" />;
+    return <Navigate to="/" replace />;
   }
   
-  const { data: categories = [] } = useQuery<Category[]>({ queryKey: ['categories'], queryFn: fetchCategories });
+  const { data: categories = [], isLoading: isCategoriesLoading } = useQuery<Category[]>({ queryKey: ['categories'], queryFn: fetchCategories });
   const { data: posts = [], isLoading } = useQuery<Post[]>({ queryKey: ['posts'], queryFn: fetchPosts });
   const category = categories.find((cat) => cat.slug === slug);
   const filtered = posts.filter(p => p.category.slug === slug);
   
+  if (isCategoriesLoading) {
+    return (
+      <div className="container px-4 py-8 md:py-12">
+        <div className="mb-8">
+          <div className="h-10 w-48 rounded bg-muted/50 animate-pulse mb-2" />
+          <div className="h-6 w-64 rounded bg-muted/50 animate-pulse" />
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="h-64 rounded-xl bg-muted/50 animate-pulse" />
+          ))}
+        </div>
+      </div>
+    );
+  }
+  
   if (!category) {
-    return <Navigate to="/" />;
+    return <Navigate to="/" replace />;
   }
   
   return (
